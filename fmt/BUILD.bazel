@@ -18,6 +18,12 @@ prettier.prettier_binary(
     env = {"BAZEL_BINDIR": "."},
 )
 
+java_binary(
+    name = "java-format",
+    main_class = "com.google.googlejavaformat.java.Main",
+    runtime_deps = ["@google-java-format//jar"],
+)
+
 sh_binary(
     name = "fmt",
     srcs = ["fmt.sh"],
@@ -28,6 +34,7 @@ sh_binary(
         "@buildifier_prebuilt//:buildifier",
         ":prettier",
         entry_point("black"),
+        ":java-format",
     ],
     deps = ["@bazel_tools//tools/bash/runfiles"],
 )

@@ -28,7 +28,7 @@ Supported languages:
 |           | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
 |           | C/C++/C#                  | clang-format                                                   |
 |           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
-|           | Java                      |                                                                |
+|   ✓        | Java                      | [google-java-format]                                           |
 |           | SQL                       |                                                                |
 |           | Objective-C               |                                                                |
 |           | Ruby                      |                                                                |
@@ -45,6 +45,7 @@ Supported languages:
 |           | Terraform                 |                                                                |
 
 [prettier]: https://prettier.io
+[google-java-format]: https://github.com/google/google-java-format
 
 1. Non-hermetic: requires that a swift toolchain is installed on the machine.
    See https://github.com/bazelbuild/rules_swift#1-install-swift

@@ -42,11 +42,13 @@ case "$mode" in
    swiftmode="--lint"
    prettiermode="--check"
    blackmode="--check"
+   javamode="--set-exit-if-changed --dry-run"
    ;;
  fix)
    swiftmode=""
    prettiermode="--write"
    blackmode=""
+   javamode="--replace"
    ;;
  *) echo >&2 "unknown mode $mode";;
 esac
@@ -71,3 +73,7 @@ git ls-files '*.js' '*.sh' '*.ts' '*.tsx' '*.json' '*.css' '*.html' '*.md' '*.ya
 echo "Running black..."
 git ls-files '*.py' '*.pyi' \
   | xargs --no-run-if-empty $(rlocation pypi_black/rules_python_wheel_entry_point_black) $blackmode
+
+echo "Running java-format"
+git ls-files '*.java' \
+  | xargs --no-run-if-empty $(rlocation aspect_rules_fmt/fmt/java-format) $javamode

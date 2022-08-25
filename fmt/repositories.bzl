@@ -4,11 +4,14 @@ These are needed for local dev, and users must install them as well.
 See https://docs.bazel.build/versions/main/skylark/deploying.html#dependencies
 """
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", _http_archive = "http_archive")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", _http_archive = "http_archive", _http_jar = "http_jar")
 load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 
 def http_archive(name, **kwargs):
     maybe(_http_archive, name = name, **kwargs)
+
+def http_jar(name, **kwargs):
+    maybe(_http_jar, name = name, **kwargs)
 
 # WARNING: any changes in this function may be BREAKING CHANGES for users
 # because we'll fetch a dependency which may be different from one that
@@ -58,4 +61,10 @@ def rules_fmt_dependencies():
         sha256 = "c03246c11efd49266e8e41e12931090b613e12a59e6f55ba2efd29a7cb8b4258",
         strip_prefix = "rules_python-0.11.0",
         url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.11.0.tar.gz",
+    )
+
+    http_jar(
+        name = "google-java-format",
+        sha256 = "a356bb0236b29c57a3ab678f17a7b027aad603b0960c183a18f1fe322e4f38ea",
+        url = "https://github.com/google/google-java-format/releases/download/v1.15.0/google-java-format-1.15.0-all-deps.jar",
     )
