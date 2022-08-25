@@ -28,7 +28,7 @@ Supported languages:
 |           | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
 |           | C/C++/C#                  | clang-format                                                   |
 |           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
-|   ✓        | Java                      | [google-java-format]                                           |
+| ✓         | Java                      | [google-java-format]                                           |
 |           | SQL                       |                                                                |
 |           | Objective-C               |                                                                |
 |           | Ruby                      |                                                                |
