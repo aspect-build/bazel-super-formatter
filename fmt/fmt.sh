@@ -56,3 +56,7 @@ echo "Running prettier..."
 git ls-files '*.js' '*.sh' '*.ts' '*.tsx' '*.json' '*.css' '*.html' '*.md' '*.yaml' '*.yml' \
   | xargs --no-run-if-empty $(rlocation aspect_rules_fmt/fmt/prettier.sh) \
     --write
+
+echo "Running black..."
+git ls-files '*.py' '*.pyi' \
+  | xargs --no-run-if-empty $(rlocation pypi_black/rules_python_wheel_entry_point_black)

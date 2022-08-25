@@ -23,6 +23,7 @@ Supported languages:
 | ✓         | JSON/YAML                 | [Prettier]                                                     |
 | ✓         | Markdown                  | [Prettier]                                                     |
 | ✓         | Bash                      | [prettier-plugin-sh](https://github.com/un-ts/prettier)        |
+| ✓         | Python                    | [Black](https://pypi.org/project/black/)        |
 |           | C/C++                     | clang-format                                                   |
 |           | C#                        | clang-format                                                   |
 

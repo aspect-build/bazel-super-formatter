@@ -1,5 +1,6 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@npm//:prettier/package_json.bzl", prettier = "bin")
+load("@pypi//:requirements.bzl", "entry_point")
 
 bzl_library(
     name = "repositories",
@@ -26,6 +27,7 @@ sh_binary(
         "@swiftformat",
         "@buildifier_prebuilt//:buildifier",
         ":prettier",
+        entry_point("black"),
     ],
     deps = ["@bazel_tools//tools/bash/runfiles"],
 )
