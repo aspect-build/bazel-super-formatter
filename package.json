@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "prettier": "*",
+    "prettier-plugin-sh": "*"
+  },
+  "pnpm": {
+    "packageExtensions": {
+      "prettier": {
+        "peerDependencies": {
+          "prettier-plugin-sh": "*"
+        }
+      }
+    }
+  }
+}

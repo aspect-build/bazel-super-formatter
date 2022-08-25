@@ -1,38 +1,59 @@
-# Template for Bazel rules
+# Bazel rules for formatting source code
 
-Copy this template to create a Bazel ruleset.
+Easily ensure your code is always formatted, with consistent tooling across everyone's machines.
 
 Features:
 
-- follows the official style guide at https://docs.bazel.build/versions/main/skylark/deploying.html
-- includes Bazel formatting as a pre-commit hook (using [buildifier])
-- includes stardoc API documentation generator
-- includes typical toolchain setup
-- CI configured with GitHub Actions
-- Release on GitHub Actions when pushing a tag
+- Don't need to add source files to Bazel library targets, or even adopt Bazel at all.
+- Managed, fully hermetic tools and runtimes (except as noted below).
+- Honors formatter configuration files.
 
-See https://docs.bazel.build/versions/main/skylark/deploying.html#readme
+TODOs:
 
-[buildifier]: https://github.com/bazelbuild/buildtools/tree/master/buildifier#readme
+- Lazy: only fetch tooling needed by languages that are present
 
-Ready to get started? Copy this repo, then
+Supported languages:
 
-1. search for "com_myorg_rules_mylang" and replace with the name you'll use for your workspace
-1. search for "myorg" and replace with GitHub org
-1. search for "mylang" and replace with the language/tool your rules are for
-1. rename directory "mylang" similarly
-1. run `pre-commit install` to get lints (see CONTRIBUTING.md)
-1. if you don't need to fetch platform-dependent tools, then remove anything toolchain-related.
-1. update the `actions/cache@v2` bazel cache key in [.github/workflows/ci.yaml](.github/workflows/ci.yaml) and [.github/workflows/release.yml](.github/workflows/release.yml) to be a hash of your source files.
-1. (optional) install the [Renovate app](https://github.com/apps/renovate) to get auto-PRs to keep the dependencies up-to-date.
-1. delete this section of the README (everything up to the SNIP).
+| Supported | Language                  | Tool                                                           |
+| --------- | ------------------------- | -------------------------------------------------------------- |
+| ✓         | Starlark (Bazel)          | [Buildifier](https://github.com/keith/buildifier-prebuilt)     |
+| ✓         | Swift                     | [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) (1) |
+| ✓         | JavaScript/TypeScript/TSX | [Prettier]                                                     |
+| ✓         | CSS/HTML                  | [Prettier]                                                     |
+| ✓         | JSON/YAML                 | [Prettier]                                                     |
+| ✓         | Markdown                  | [Prettier]                                                     |
+| ✓         | Bash                      | [prettier-plugin-sh](https://github.com/un-ts/prettier)        |
+|           | C/C++                     | clang-format                                                   |
+|           | C#                        | clang-format                                                   |
 
----- SNIP ----
+[prettier]: https://prettier.io
 
-# Bazel rules for mylang
+1. Non-hermetic: requires that a swift toolchain is installed on the machine.
+   See https://github.com/bazelbuild/rules_swift#1-install-swift
 
 ## Installation
 
+Install Bazel: <https://bazel.build/install/bazelisk>
+
 From the release you wish to use:
-<https://github.com/myorg/rules_mylang/releases>
+<https://github.com/aspect-build/rules_fmt/releases>
 copy the WORKSPACE snippet into your `WORKSPACE` file.
+
+## Usage
+
+One-time re-format all files:
+
+`bazel run @aspect_rules_fmt//fmt`
+
+Install as a git pre-commit hook:
+
+```bash
+$ echo "bazel run @aspect_rules_fmt//fmt" >> .git/hooks/pre-commit
+$ chmod u+x .git/hooks/pre-commit
+```
+
+## Design
+
+See https://hackmd.io/0UgIb6gyTvSVX9N2vTPGug
+
+This project just covers the "formatting" use case.

@@ -1,0 +1,31 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@npm//:prettier/package_json.bzl", prettier = "bin")
+
+bzl_library(
+    name = "repositories",
+    srcs = ["repositories.bzl"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@bazel_tools//tools/build_defs/repo:http.bzl",
+        "@bazel_tools//tools/build_defs/repo:utils.bzl",
+    ],
+)
+
+prettier.prettier_binary(
+    name = "prettier",
+    # Allow the binary to be run outside bazel
+    env = {"BAZEL_BINDIR": "."},
+)
+
+sh_binary(
+    name = "fmt",
+    srcs = ["fmt.sh"],
+    data = [
+        # FIXME: somehow depend only on the ones needed for languages we'll format
+        # otherwise it's a big fat eager fetch
+        "@swiftformat",
+        "@buildifier_prebuilt//:buildifier",
+        ":prettier",
+    ],
+    deps = ["@bazel_tools//tools/bash/runfiles"],
+)

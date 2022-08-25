@@ -1,1 +1,3 @@
 docs/*.md
+# Don't format our own script as its running!
+fmt/fmt.sh

@@ -20,7 +20,3 @@ repos:
       # Requires that commitizen is already installed
       - id: commitizen
         stages: [commit-msg]
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: "v2.4.0"
-    hooks:
-      - id: prettier
