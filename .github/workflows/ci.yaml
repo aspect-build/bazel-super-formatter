@@ -46,6 +46,9 @@ jobs:
             "~/.cache/bazel-repo"
           key: bazel-cache-${{ hashFiles('**/BUILD.bazel', '**/*.bzl', 'WORKSPACE') }}
           restore-keys: bazel-cache-
+      - name: Check formatting
+        working-directory: ${{ matrix.folder }}
+        run: bazel --bazelrc=$GITHUB_WORKSPACE/.github/workflows/ci.bazelrc --bazelrc=.bazelrc run @aspect_rules_fmt//fmt check
       - name: bazel test //...
         env:
           # Bazelisk will download bazel to here, ensure it is cached between runs.

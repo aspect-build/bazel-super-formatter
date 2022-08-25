@@ -11,7 +11,6 @@ Features:
 TODOs:
 
 - Lazy: only fetch tooling needed by languages that are present
-- Document how to run as a CI check
 - Ship as a pre-commit.com hook
 
 Supported languages:
@@ -26,24 +25,24 @@ Supported languages:
 | ✓         | Markdown                  | [Prettier]                                                     |
 | ✓         | Bash                      | [prettier-plugin-sh](https://github.com/un-ts/prettier)        |
 | ✓         | Python                    | [Black](https://pypi.org/project/black/)                       |
-|           | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt) |
-|           | C/C++/C#                     | clang-format                                                   |
-|           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt) |
-| | Java | |
-| | SQL | |
-| | Objective-C | |
-| | Ruby | |
-| | PHP | |
-| | Visual Basic | |
-| | Groovy | |
-| | Scala | |
-| | Kotlin | |
-| | Haskell | |
-| | Dart | |
-| | Perl | |
-| | Protobuf | |
-| | Jsonnet | |
-| | Terraform | |
+|           | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
+|           | C/C++/C#                  | clang-format                                                   |
+|           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
+|           | Java                      |                                                                |
+|           | SQL                       |                                                                |
+|           | Objective-C               |                                                                |
+|           | Ruby                      |                                                                |
+|           | PHP                       |                                                                |
+|           | Visual Basic              |                                                                |
+|           | Groovy                    |                                                                |
+|           | Scala                     |                                                                |
+|           | Kotlin                    |                                                                |
+|           | Haskell                   |                                                                |
+|           | Dart                      |                                                                |
+|           | Perl                      |                                                                |
+|           | Protobuf                  |                                                                |
+|           | Jsonnet                   |                                                                |
+|           | Terraform                 |                                                                |
 
 [prettier]: https://prettier.io
 
@@ -70,6 +69,10 @@ Install as a git pre-commit hook:
 $ echo "bazel run @aspect_rules_fmt//fmt" >> .git/hooks/pre-commit
 $ chmod u+x .git/hooks/pre-commit
 ```
+
+Check that files are already formatted, exit non-zero if formatting is needed:
+
+`bazel run @aspect_rules_fmt//fmt check`
 
 ## Design
 
