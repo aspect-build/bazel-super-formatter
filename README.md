@@ -75,6 +75,16 @@ Check that files are already formatted, exit non-zero if formatting is needed:
 
 `bazel run @aspect_rules_fmt//fmt check`
 
+## Configuration
+
+### Changing the version of a formatter tool
+
+Look in our `fmt/repositories.bzl` file and copy the `http_*` rule you want to modify into your WORKSPACE, above the `rules_fmt_dependencies()` call.
+
+### Ignoring files
+
+We honor the `.gitignore` file. Otherwise use the affordance provided by the formatter tool, for example `.prettierignore` for files to be ignored by Prettier.
+
 ## Design
 
 See https://hackmd.io/0UgIb6gyTvSVX9N2vTPGug
