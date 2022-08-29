@@ -53,27 +53,38 @@ case "$mode" in
  *) echo >&2 "unknown mode $mode";;
 esac
 
+files=$(git ls-files '*/BUILD.bazel' '*.bzl' '*.BUILD' 'WORKSPACE' '*.bazel')
+bin=$(rlocation buildifier_prebuilt/buildifier/buildifier)
+[ -n "$files" ] && [ -n "$bin" ] && {
+  echo "Running Buildifier..."
+  echo $files | xargs $bin -mode="$mode"
+}
 
-# swiftformat itself prints Running SwiftFormat...
+files=$(git ls-files '*.js' '*.sh' '*.ts' '*.tsx' '*.json' '*.css' '*.html' '*.md' '*.yaml' '*.yml')
+bin=$(rlocation aspect_rules_fmt/fmt/prettier.sh)
+[ -n "$files" ] && [ -n "$bin" ] && {
+  echo "Running Prettier..."
+  echo $files | xargs $bin $prettiermode
+}
+
+files=$(git ls-files '*.py' '*.pyi')
+bin=$(rlocation aspect_rules_fmt_pypi_black/rules_python_wheel_entry_point_black)
+[ -n "$files" ] && [ -n "$bin" ] && {
+  echo "Running black..."
+  echo $files | xargs $bin $blackmode
+}
+
+files=$(git ls-files '*.java')
+bin=$(rlocation aspect_rules_fmt/fmt/java-format)
+[ -n "$files" ] && [ -n "$bin" ] && {
+  echo "Running java-format..."
+  echo $files | xargs $bin $javamode
+}
+
 # TODO: don't hardcode "linux"
-
-git ls-files '*.swift' \
-  | xargs --no-run-if-empty $(rlocation swiftformat/swiftformat_linux) $swiftmode
-
-echo "Running Buildifier..."
-git ls-files '*/BUILD.bazel' '*.bzl' '*.BUILD' 'WORKSPACE' '*.bazel' \
-  | xargs --no-run-if-empty $(rlocation buildifier_prebuilt/buildifier/buildifier) -mode="$mode"
-
-#set -x
-#find . -name "*.sh" | $(rlocation aspect_rules_fmt/fmt/prettier.sh)
-echo "Running prettier..."
-git ls-files '*.js' '*.sh' '*.ts' '*.tsx' '*.json' '*.css' '*.html' '*.md' '*.yaml' '*.yml' \
-  | xargs --no-run-if-empty $(rlocation aspect_rules_fmt/fmt/prettier.sh) $prettiermode
-
-echo "Running black..."
-git ls-files '*.py' '*.pyi' \
-  | xargs --no-run-if-empty $(rlocation pypi_black/rules_python_wheel_entry_point_black) $blackmode
-
-echo "Running java-format"
-git ls-files '*.java' \
-  | xargs --no-run-if-empty $(rlocation aspect_rules_fmt/fmt/java-format) $javamode
+files=$(git ls-files '*.swift')
+bin=$(rlocation swiftformat/swiftformat_linux)
+[ -n "$files" ] && [ -n "$bin" ] && {
+  # swiftformat itself prints Running SwiftFormat...
+  echo $files | xargs $bin $swiftmode
+}

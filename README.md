@@ -77,6 +77,18 @@ Check that files are already formatted, exit non-zero if formatting is needed:
 
 ## Configuration
 
+### Disable a formatter for unused language
+
+If you don't use a language in your whole repo, you can turn off fetching the tooling.
+
+Add some of these lines to `.bazelrc`:
+
+```
+build --@aspect_rules_fmt//fmt:java_enabled=false
+build --@aspect_rules_fmt//fmt:python_enabled=false
+build --@aspect_rules_fmt//fmt:swift_enabled=false
+```
+
 ### Changing the version of a formatter tool
 
 Look in our `fmt/repositories.bzl` file and copy the `http_*` rule you want to modify into your WORKSPACE, above the `rules_fmt_dependencies()` call.
