@@ -21,6 +21,8 @@ def http_jar(name, **kwargs):
 # and released only in semver majors.
 # This is all fixed by bzlmod, so we just tolerate it for now.
 def rules_fmt_dependencies():
+    "Fetch dependencies"
+
     # The minimal version of bazel_skylib we require
     http_archive(
         name = "bazel_skylib",
@@ -33,11 +35,22 @@ def rules_fmt_dependencies():
 
     # TODO: fetch for host platform
     http_archive(
-        name = "swiftformat",
+        name = "swiftformat_linux",
         sha256 = "f8ecce65f67cbc4e855d2a508e1282018cd7427f2b6bc33c83a3416c227233b4",
         url = "https://github.com/nicklockwood/SwiftFormat/releases/download/0.49.11/swiftformat_linux.zip",
         patch_cmds = ["chmod u+x swiftformat_linux"],
         build_file_content = "filegroup(name = \"swiftformat\", srcs=[\"swiftformat_linux\"], visibility=[\"//visibility:public\"])",
+    )
+
+    http_archive(
+        name = "swiftformat_mac",
+        sha256 = "978eaffdc3716bbc0859aecee0d83875cf3ab8d8725779448f0035309d9ad9f3",
+        url = "https://github.com/nicklockwood/SwiftFormat/releases/download/0.49.17/swiftformat.zip",
+        patch_cmds = [
+            "xattr -c swiftformat",
+            "chmod u+x swiftformat",
+        ],
+        build_file_content = "filegroup(name = \"swiftformat_mac\", srcs=[\"swiftformat\"], visibility=[\"//visibility:public\"])",
     )
 
     http_archive(

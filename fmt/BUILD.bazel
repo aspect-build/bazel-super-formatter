@@ -1,6 +1,8 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
-load("@npm//:prettier/package_json.bzl", prettier = "bin")
-load("@pypi//:requirements.bzl", "entry_point")
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
+load("@aspect_rules_fmt_npm//:prettier/package_json.bzl", prettier = "bin")
+load("@aspect_rules_fmt_pypi//:requirements.bzl", "entry_point")
+load(":langs.bzl", "LANGS")
 
 bzl_library(
     name = "repositories",
@@ -31,17 +33,66 @@ java_binary(
     runtime_deps = ["@google-java-format//jar"],
 )
 
+alias(
+    name = "black",
+    actual = entry_point("black"),
+)
+
+alias(
+    name = "buildifier",
+    actual = "@buildifier_prebuilt//:buildifier",
+)
+
+alias(
+    name = "swiftformat",
+    # TODO: keith says it would be okay to upstream a proper toolchain for this
+    # https://github.com/bazelbuild/rules_swift/issues/864
+    actual = select({
+        "@bazel_tools//src/conditions:linux": "@swiftformat_linux",
+        "@bazel_tools//src/conditions:darwin": "@swiftformat_mac",
+    }),
+)
+
+[
+    bool_flag(
+        name = s + "_enabled",
+        build_setting_default = True,
+    )
+    for s in LANGS
+]
+
+[
+    config_setting(
+        name = "fmt_" + s,
+        flag_values = {
+            s + "_enabled": "1",
+        },
+    )
+    for s in LANGS
+]
+
 sh_binary(
     name = "fmt",
     srcs = ["fmt.sh"],
     data = [
-        # FIXME: somehow depend only on the ones needed for languages we'll format
-        # otherwise it's a big fat eager fetch
-        "@swiftformat",
-        "@buildifier_prebuilt//:buildifier",
+        ":buildifier",
         ":prettier",
-        entry_point("black"),
-        ":java-format",
-    ],
+    ] + select(
+        {
+            ":fmt_java": [":java-format"],
+            "//conditions:default": [],
+        },
+    ) + select(
+        {
+            ":fmt_swift": [":swiftformat"],
+            "//conditions:default": [],
+        },
+    ) + select(
+        {
+            ":fmt_python": [":black"],
+            "//conditions:default": [],
+        },
+    ),
+    visibility = ["//visibility:public"],
     deps = ["@bazel_tools//tools/bash/runfiles"],
 )
