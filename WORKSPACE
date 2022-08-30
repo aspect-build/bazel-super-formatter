@@ -20,18 +20,6 @@ nodejs_register_toolchains(
     node_version = "16.9.0",
 )
 
-load("@aspect_rules_js//npm:npm_import.bzl", "npm_translate_lock")
-
-npm_translate_lock(
-    name = "aspect_rules_fmt_npm",
-    pnpm_lock = "//:pnpm-lock.yaml",
-    verify_node_modules_ignored = "//:.bazelignore",
-)
-
-load("@aspect_rules_fmt_npm//:repositories.bzl", "npm_repositories")
-
-npm_repositories()
-
 load("@rules_python//python:repositories.bzl", "python_register_toolchains")
 
 python_register_toolchains(
@@ -39,16 +27,10 @@ python_register_toolchains(
     python_version = "3.10",
 )
 
-load("@python3//:defs.bzl", "interpreter")
-load("@rules_python//python:pip.bzl", "pip_parse")
+load("@aspect_rules_fmt//fmt:dependencies.bzl", "parse_dependencies")
 
-pip_parse(
-    name = "aspect_rules_fmt_pypi",
-    python_interpreter_target = interpreter,
-    requirements_lock = "//:requirements_lock.txt",
-)
+parse_dependencies()
 
-load("@aspect_rules_fmt_pypi//:requirements.bzl", "install_deps")
+load("//fmt:toolchains.bzl", "fmt_register_toolchains")
 
-# Initialize repositories for all packages in requirements_lock.txt.
-install_deps()
+fmt_register_toolchains()

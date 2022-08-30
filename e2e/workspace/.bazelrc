@@ -1,0 +1,1 @@
+build --@aspect_rules_fmt//fmt:java_enabled=false

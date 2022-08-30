@@ -35,7 +35,7 @@ def rules_fmt_dependencies():
 
     # TODO: fetch for host platform
     http_archive(
-        name = "swiftformat_linux",
+        name = "swiftformat",
         sha256 = "f8ecce65f67cbc4e855d2a508e1282018cd7427f2b6bc33c83a3416c227233b4",
         url = "https://github.com/nicklockwood/SwiftFormat/releases/download/0.49.11/swiftformat_linux.zip",
         patch_cmds = ["chmod u+x swiftformat_linux"],
@@ -63,10 +63,23 @@ def rules_fmt_dependencies():
     )
 
     http_archive(
+        name = "rules_nodejs",
+        sha256 = "5aef09ed3279aa01d5c928e3beb248f9ad32dde6aafe6373a8c994c3ce643064",
+        urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.5.3/rules_nodejs-core-5.5.3.tar.gz"],
+    )
+
+    http_archive(
         name = "aspect_rules_js",
-        sha256 = "538049993bec3ee1ae9b1c3cd669156bca04eb67027b222883e47b0a2aed2e67",
-        strip_prefix = "rules_js-1.0.0",
-        url = "https://github.com/aspect-build/rules_js/archive/refs/tags/v1.0.0.tar.gz",
+        sha256 = "25bcb082d49616ac2da538bf7bdd33a9730c8884edbec787fec83db07e4f7f16",
+        strip_prefix = "rules_js-1.1.0",
+        url = "https://github.com/aspect-build/rules_js/archive/refs/tags/v1.1.0.tar.gz",
+    )
+
+    http_archive(
+        name = "aspect_bazel_lib",
+        sha256 = "8ea64f13c6db68356355d6a97dced3d149e9cd7ba3ecb4112960586e914e466d",
+        strip_prefix = "bazel-lib-1.11.1",
+        url = "https://github.com/aspect-build/bazel-lib/archive/refs/tags/v1.11.1.tar.gz",
     )
 
     http_archive(
