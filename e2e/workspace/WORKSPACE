@@ -17,3 +17,29 @@ local_repository(
 load("@aspect_rules_fmt//fmt:repositories.bzl", "rules_fmt_dependencies")
 
 rules_fmt_dependencies()
+
+# If you didn't already register a toolchain providing nodejs, do that:
+load("@rules_nodejs//nodejs:repositories.bzl", "DEFAULT_NODE_VERSION", "nodejs_register_toolchains")
+
+nodejs_register_toolchains(
+    name = "node",
+    node_version = DEFAULT_NODE_VERSION,
+)
+
+# If you format python code, you'll need that toolchain as well
+load("@rules_python//python:repositories.bzl", "python_register_toolchains")
+
+python_register_toolchains(
+    name = "python3",
+    python_version = "3.10",
+)
+
+load("@aspect_rules_fmt//fmt:dependencies.bzl", "parse_dependencies")
+
+parse_dependencies()
+
+# Installs toolchains for running programs under Node, Python, etc.
+# Be sure to register your own toolchains before this.
+load("@aspect_rules_fmt//fmt:toolchains.bzl", "fmt_register_toolchains")
+
+fmt_register_toolchains()

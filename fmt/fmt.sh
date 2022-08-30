@@ -9,6 +9,16 @@ if [[ -z "$BUILD_WORKSPACE_DIRECTORY" ]]; then
   exit 1
 fi
 
+function on_exit {
+  code=$?
+  if [[ $code != 0 ]]; then
+    echo >&2 "FAILED: A formatter tool exited with code $code"
+    echo >&2 "Try running 'bazel run @aspect_rules_fmt//fmt' to fix this."
+  fi
+}
+
+trap on_exit EXIT
+
 readonly mode="${1:-fix}"
 
 # --- begin runfiles.bash initialization v2 ---
@@ -78,7 +88,8 @@ files=$(git ls-files '*.java')
 bin=$(rlocation aspect_rules_fmt/fmt/java-format)
 [ -n "$files" ] && [ -n "$bin" ] && {
   echo "Running java-format..."
-  echo $files | xargs $bin $javamode
+  # Setting JAVA_RUNFILES to work around https://github.com/bazelbuild/bazel/issues/12348
+  echo $files | JAVA_RUNFILES="${RUNFILES_MANIFEST_FILE%_manifest}" xargs $bin $javamode
 }
 
 # TODO: don't hardcode "linux"
