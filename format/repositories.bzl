@@ -33,11 +33,11 @@ def rules_format_dependencies():
         ],
     )
 
-    # TODO: fetch for host platform
+    # TODO: after https://github.com/bazelbuild/rules_swift/issues/864 we should only fetch for host
     http_archive(
         name = "swiftformat",
-        sha256 = "f8ecce65f67cbc4e855d2a508e1282018cd7427f2b6bc33c83a3416c227233b4",
-        url = "https://github.com/nicklockwood/SwiftFormat/releases/download/0.49.11/swiftformat_linux.zip",
+        sha256 = "f62813980c2848cb1941f1456a2a06251c2e2323183623760922058b98c70745",
+        url = "https://github.com/nicklockwood/SwiftFormat/releases/download/0.49.17/swiftformat_linux.zip",
         patch_cmds = ["chmod u+x swiftformat_linux"],
         build_file_content = "filegroup(name = \"swiftformat\", srcs=[\"swiftformat_linux\"], visibility=[\"//visibility:public\"])",
     )
