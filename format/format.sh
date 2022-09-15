@@ -19,7 +19,11 @@ function on_exit {
 
 trap on_exit EXIT
 
-readonly mode="${1:-fix}"
+mode=fix
+if [ "$1" == "--mode" ]; then
+  readonly mode=$2
+  shift 2
+fi
 
 # --- begin runfiles.bash initialization v2 ---
 # Copy-pasted from the Bazel Bash runfiles library v2:
@@ -63,28 +67,44 @@ case "$mode" in
  *) echo >&2 "unknown mode $mode";;
 esac
 
-files=$(git ls-files '*/BUILD.bazel' '*.bzl' '*.BUILD' 'WORKSPACE' '*.bazel')
+if [ "$#" -eq 0 ]; then
+  files=$(git ls-files '*/BUILD.bazel' '*.bzl' '*.BUILD' 'WORKSPACE' '*.bazel')
+else
+  files=$(find "$@" -name '*/BUILD.bazel' -or -name '*.bzl' -or -name '*.BUILD' -or -name 'WORKSPACE' -or -name '*.bazel')
+fi
 bin=$(rlocation buildifier_prebuilt/buildifier/buildifier)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running Buildifier..."
   echo $files | xargs $bin -mode="$mode"
 fi
 
-files=$(git ls-files '*.js' '*.sh' '*.ts' '*.tsx' '*.json' '*.css' '*.html' '*.md' '*.yaml' '*.yml')
+if [ "$#" -eq 0 ]; then
+  files=$(git ls-files '*.js' '*.sh' '*.ts' '*.tsx' '*.json' '*.css' '*.html' '*.md' '*.yaml' '*.yml')
+else
+  files=$(find "$@" -name '*.js' -or -name '*.sh' -or -name '*.ts' -or -name '*.tsx' -or -name '*.json' -or -name '*.css' -or -name '*.html' -or -name '*.md' -or -name '*.yaml' -or -name '*.yml')
+fi
 bin=$(rlocation aspect_rules_format/format/prettier.sh)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running Prettier..."
   echo $files | xargs $bin $prettiermode
 fi
 
-files=$(git ls-files '*.py' '*.pyi')
+if [ "$#" -eq 0 ]; then
+  files=$(git ls-files '*.py' '*.pyi')
+else
+  files=$(find "$@" -name '*.py' -or -name '*.pyi')
+fi
 bin=$(rlocation aspect_rules_format_pypi_black/rules_python_wheel_entry_point_black)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running black..."
   echo $files | xargs $bin $blackmode
 fi
 
-files=$(git ls-files '*.java')
+if [ "$#" -eq 0 ]; then
+  files=$(git ls-files '*.java')
+else
+  files=$(find "$@" -name '*.java')
+fi
 bin=$(rlocation aspect_rules_format/format/java-format)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running java-format..."
@@ -93,7 +113,11 @@ if [ -n "$files" ] && [ -n "$bin" ]; then
 fi
 
 # TODO: don't hardcode "linux"
-files=$(git ls-files '*.swift')
+if [ "$#" -eq 0 ]; then
+  files=$(git ls-files '*.swift')
+else
+  files=$(find "$@" -name '*.swift')
+fi
 bin=$(rlocation swiftformat/swiftformat_linux)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   # swiftformat itself prints Running SwiftFormat...

@@ -60,20 +60,36 @@ copy the WORKSPACE snippet into your `WORKSPACE` file.
 
 ## Usage
 
-One-time re-format all files:
+💎 One-time re-format all files:
 
 `bazel run @aspect_rules_format//format`
 
-Install as a git pre-commit hook:
+💎 Re-format a specific file:
+
+`bazel run @aspect_rules_format//format some/file.ext`
+
+💎 Install as a git pre-commit hook:
 
 ```bash
 $ echo "bazel run @aspect_rules_format//format" >> .git/hooks/pre-commit
 $ chmod u+x .git/hooks/pre-commit
 ```
 
-Check that files are already formatted, exit non-zero if formatting is needed:
+💎 Install under pre-commit.com hook, in your `.pre-commit-config.yaml`:
 
-`bazel run @aspect_rules_format//format check`
+```yaml
+- repo: local
+  hooks:
+    - id: bazel-super-formatter
+      name: Format
+      language: system
+      entry: bazel run //:format
+      files: .*
+```
+
+💎 Check that files are already formatted, exit non-zero if formatting is needed:
+
+`bazel run @aspect_rules_format//format -- --mode check`
 
 ## Configuration
 

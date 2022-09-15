@@ -48,7 +48,7 @@ jobs:
           restore-keys: bazel-cache-
       - name: Check formatting
         working-directory: ${{ matrix.folder }}
-        run: bazel --bazelrc=$GITHUB_WORKSPACE/.github/workflows/ci.bazelrc --bazelrc=.bazelrc run @aspect_rules_format//format check
+        run: bazel --bazelrc=$GITHUB_WORKSPACE/.github/workflows/ci.bazelrc --bazelrc=.bazelrc run @aspect_rules_format//format -- --mode check
       - name: bazel test //...
         env:
           # Bazelisk will download bazel to here, ensure it is cached between runs.
