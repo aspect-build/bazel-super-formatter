@@ -64,6 +64,23 @@ copy the WORKSPACE snippet into your `WORKSPACE` file.
 
 `bazel run @aspect_rules_format//format`
 
+> Note that mass-reformatting can be disruptive in an active repo.
+> You may want to instruct developers with in-flight changes to reformat their branches as well, to avoid merge conflicts.
+> Also consider adding your re-format commit to the [`.git-blame-ignore-revs` file](https://docs.github.com/en/repositories/working-with-files/using-files/viewing-a-file#ignore-commits-in-the-blame-view) to avoid polluting the blame layer.
+
+💎 Syntax sugar
+
+In `/BUILD.bazel` add:
+
+```starlark
+alias(
+    name = "format",
+    actual = "@aspect_rules_format//format",
+)
+```
+
+Now you can just run `bazel run format`.
+
 💎 Re-format a specific file:
 
 `bazel run @aspect_rules_format//format some/file.ext`
@@ -75,7 +92,7 @@ $ echo "bazel run @aspect_rules_format//format" >> .git/hooks/pre-commit
 $ chmod u+x .git/hooks/pre-commit
 ```
 
-💎 Install under pre-commit.com hook, in your `.pre-commit-config.yaml`:
+💎 Install under [pre-commit.com](https://pre-commit.com/) hook, in your `.pre-commit-config.yaml`:
 
 ```yaml
 - repo: local
@@ -83,7 +100,7 @@ $ chmod u+x .git/hooks/pre-commit
     - id: bazel-super-formatter
       name: Format
       language: system
-      entry: bazel run //:format
+      entry: bazel run @aspect_rules_format//format
       files: .*
 ```
 
