@@ -55,7 +55,7 @@ Supported languages:
 Install Bazel: <https://bazel.build/install/bazelisk>
 
 From the release you wish to use:
-<https://github.com/aspect-build/rules_format/releases>
+<https://github.com/aspect-build/bazel-super-formatter/releases>
 copy the WORKSPACE snippet into your `WORKSPACE` file.
 
 ## Usage
