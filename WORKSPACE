@@ -1,9 +1,9 @@
-workspace(name = "aspect_rules_fmt")
+workspace(name = "aspect_rules_format")
 
-load("//fmt:repositories.bzl", "rules_fmt_dependencies")
+load("//format:repositories.bzl", "rules_format_dependencies")
 
 # Fetch dependencies which users need as well
-rules_fmt_dependencies()
+rules_format_dependencies()
 
 load("@buildifier_prebuilt//:defs.bzl", "buildifier_prebuilt_register_toolchains")
 
@@ -27,10 +27,10 @@ python_register_toolchains(
     python_version = "3.10",
 )
 
-load("@aspect_rules_fmt//fmt:dependencies.bzl", "parse_dependencies")
+load("@aspect_rules_format//format:dependencies.bzl", "parse_dependencies")
 
 parse_dependencies()
 
-load("//fmt:toolchains.bzl", "fmt_register_toolchains")
+load("//format:toolchains.bzl", "format_register_toolchains")
 
-fmt_register_toolchains()
+format_register_toolchains()

@@ -20,7 +20,7 @@ def http_jar(name, **kwargs):
 # changes in this function should be marked as BREAKING in the commit message
 # and released only in semver majors.
 # This is all fixed by bzlmod, so we just tolerate it for now.
-def rules_fmt_dependencies():
+def rules_format_dependencies():
     "Fetch dependencies"
 
     # The minimal version of bazel_skylib we require

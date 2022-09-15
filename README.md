@@ -55,25 +55,25 @@ Supported languages:
 Install Bazel: <https://bazel.build/install/bazelisk>
 
 From the release you wish to use:
-<https://github.com/aspect-build/rules_fmt/releases>
+<https://github.com/aspect-build/rules_format/releases>
 copy the WORKSPACE snippet into your `WORKSPACE` file.
 
 ## Usage
 
 One-time re-format all files:
 
-`bazel run @aspect_rules_fmt//fmt`
+`bazel run @aspect_rules_format//format`
 
 Install as a git pre-commit hook:
 
 ```bash
-$ echo "bazel run @aspect_rules_fmt//fmt" >> .git/hooks/pre-commit
+$ echo "bazel run @aspect_rules_format//format" >> .git/hooks/pre-commit
 $ chmod u+x .git/hooks/pre-commit
 ```
 
 Check that files are already formatted, exit non-zero if formatting is needed:
 
-`bazel run @aspect_rules_fmt//fmt check`
+`bazel run @aspect_rules_format//format check`
 
 ## Configuration
 
@@ -84,14 +84,14 @@ If you don't use a language in your whole repo, you can turn off fetching the to
 Add some of these lines to `.bazelrc`:
 
 ```
-build --@aspect_rules_fmt//fmt:java_enabled=false
-build --@aspect_rules_fmt//fmt:python_enabled=false
-build --@aspect_rules_fmt//fmt:swift_enabled=false
+build --@aspect_rules_format//format:java_enabled=false
+build --@aspect_rules_format//format:python_enabled=false
+build --@aspect_rules_format//format:swift_enabled=false
 ```
 
 ### Changing the version of a formatter tool
 
-Look in our `fmt/repositories.bzl` file and copy the `http_*` rule you want to modify into your WORKSPACE, above the `rules_fmt_dependencies()` call.
+Look in our `format/repositories.bzl` file and copy the `http_*` rule you want to modify into your WORKSPACE, above the `rules_format_dependencies()` call.
 
 ### Ignoring files
 

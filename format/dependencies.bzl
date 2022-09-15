@@ -4,13 +4,13 @@ load("@rules_python//python:pip.bzl", "pip_parse")
 
 def parse_dependencies():
     npm_translate_lock(
-        name = "aspect_rules_fmt_npm",
-        link_workspace = "aspect_rules_fmt",
-        pnpm_lock = "@aspect_rules_fmt//:pnpm-lock.yaml",
+        name = "aspect_rules_format_npm",
+        link_workspace = "aspect_rules_format",
+        pnpm_lock = "@aspect_rules_format//:pnpm-lock.yaml",
     )
 
     pip_parse(
-        name = "aspect_rules_fmt_pypi",
+        name = "aspect_rules_format_pypi",
         python_interpreter_target = interpreter,
-        requirements_lock = "@aspect_rules_fmt//:requirements_lock.txt",
+        requirements_lock = "@aspect_rules_format//:requirements_lock.txt",
     )
