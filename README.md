@@ -1,4 +1,4 @@
-# Bazel rules for formatting source code
+# A tool for formatting source code
 
 Easily ensure your code is always formatted, with consistent tooling across everyone's machines.
 
