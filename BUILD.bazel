@@ -1,4 +1,4 @@
-load("@aspect_rules_fmt_npm//:defs.bzl", "npm_link_all_packages")
+load("@aspect_rules_format_npm//:defs.bzl", "npm_link_all_packages")
 load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 
 npm_link_all_packages(name = "node_modules")

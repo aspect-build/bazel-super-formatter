@@ -1,22 +1,22 @@
 # Override http_archive for local testing
 local_repository(
-    name = "aspect_rules_fmt",
+    name = "aspect_rules_format",
     path = "../..",
 )
 
 #---SNIP--- Below here is re-used in the workspace snippet published on releases
 
 ######################
-# rules_fmt setup #
+# rules_format setup #
 ######################
-# Fetches the rules_fmt dependencies.
+# Fetches the rules_format dependencies.
 # If you want to have a different version of some dependency,
 # you should fetch it *before* calling this.
 # Alternatively, you can skip calling this function, so long as you've
 # already fetched all the dependencies.
-load("@aspect_rules_fmt//fmt:repositories.bzl", "rules_fmt_dependencies")
+load("@aspect_rules_format//format:repositories.bzl", "rules_format_dependencies")
 
-rules_fmt_dependencies()
+rules_format_dependencies()
 
 # If you didn't already register a toolchain providing nodejs, do that:
 load("@rules_nodejs//nodejs:repositories.bzl", "DEFAULT_NODE_VERSION", "nodejs_register_toolchains")
@@ -34,12 +34,12 @@ python_register_toolchains(
     python_version = "3.10",
 )
 
-load("@aspect_rules_fmt//fmt:dependencies.bzl", "parse_dependencies")
+load("@aspect_rules_format//format:dependencies.bzl", "parse_dependencies")
 
 parse_dependencies()
 
 # Installs toolchains for running programs under Node, Python, etc.
 # Be sure to register your own toolchains before this.
-load("@aspect_rules_fmt//fmt:toolchains.bzl", "fmt_register_toolchains")
+load("@aspect_rules_format//format:toolchains.bzl", "format_register_toolchains")
 
-fmt_register_toolchains()
+format_register_toolchains()

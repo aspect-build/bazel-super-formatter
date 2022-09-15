@@ -1,7 +1,7 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
-load("@aspect_rules_fmt_npm//:prettier/package_json.bzl", prettier = "bin")
-load("@aspect_rules_fmt_pypi//:requirements.bzl", "entry_point")
+load("@aspect_rules_format_npm//:prettier/package_json.bzl", prettier = "bin")
+load("@aspect_rules_format_pypi//:requirements.bzl", "entry_point")
 load(":langs.bzl", "LANGS")
 
 bzl_library(
@@ -63,7 +63,7 @@ alias(
 
 [
     config_setting(
-        name = "fmt_" + s,
+        name = "format_" + s,
         flag_values = {
             s + "_enabled": "1",
         },
@@ -72,24 +72,24 @@ alias(
 ]
 
 sh_binary(
-    name = "fmt",
-    srcs = ["fmt.sh"],
+    name = "format",
+    srcs = ["format.sh"],
     data = [
         ":buildifier",
         ":prettier",
     ] + select(
         {
-            ":fmt_java": [":java-format"],
+            ":format_java": [":java-format"],
             "//conditions:default": [],
         },
     ) + select(
         {
-            ":fmt_swift": [":swiftformat"],
+            ":format_swift": [":swiftformat"],
             "//conditions:default": [],
         },
     ) + select(
         {
-            ":fmt_python": [":black"],
+            ":format_python": [":black"],
             "//conditions:default": [],
         },
     ),

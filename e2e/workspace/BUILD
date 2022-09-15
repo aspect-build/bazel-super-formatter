@@ -3,7 +3,7 @@ Add a basic smoke-test target below.
 """
 
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
-# load("aspect_rules_fmt//fmt:defs.bzl", "...")
+# load("aspect_rules_format//format:defs.bzl", "...")
 
 # Replace with a usage of your rule/macro
 filegroup(name = "empty")

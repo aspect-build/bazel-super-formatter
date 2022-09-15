@@ -13,7 +13,7 @@ function on_exit {
   code=$?
   if [[ $code != 0 ]]; then
     echo >&2 "FAILED: A formatter tool exited with code $code"
-    echo >&2 "Try running 'bazel run @aspect_rules_fmt//fmt' to fix this."
+    echo >&2 "Try running 'bazel run @aspect_rules_format//format' to fix this."
   fi
 }
 
@@ -71,21 +71,21 @@ bin=$(rlocation buildifier_prebuilt/buildifier/buildifier)
 }
 
 files=$(git ls-files '*.js' '*.sh' '*.ts' '*.tsx' '*.json' '*.css' '*.html' '*.md' '*.yaml' '*.yml')
-bin=$(rlocation aspect_rules_fmt/fmt/prettier.sh)
+bin=$(rlocation aspect_rules_format/format/prettier.sh)
 [ -n "$files" ] && [ -n "$bin" ] && {
   echo "Running Prettier..."
   echo $files | xargs $bin $prettiermode
 }
 
 files=$(git ls-files '*.py' '*.pyi')
-bin=$(rlocation aspect_rules_fmt_pypi_black/rules_python_wheel_entry_point_black)
+bin=$(rlocation aspect_rules_format_pypi_black/rules_python_wheel_entry_point_black)
 [ -n "$files" ] && [ -n "$bin" ] && {
   echo "Running black..."
   echo $files | xargs $bin $blackmode
 }
 
 files=$(git ls-files '*.java')
-bin=$(rlocation aspect_rules_fmt/fmt/java-format)
+bin=$(rlocation aspect_rules_format/format/java-format)
 [ -n "$files" ] && [ -n "$bin" ] && {
   echo "Running java-format..."
   # Setting JAVA_RUNFILES to work around https://github.com/bazelbuild/bazel/issues/12348
