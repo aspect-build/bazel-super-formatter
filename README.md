@@ -2,16 +2,13 @@
 
 Easily ensure your code is always formatted, with consistent tooling across everyone's machines.
 
+bazel-super-formatter is an aggregator tool that runs many formatters, in the spirit of <https://github.com/github/super-linter>.
+
 Features:
 
-- Don't need to add source files to Bazel library targets, or even adopt Bazel at all.
+- Don't need to add Bazel targets to include the source files, or even adopt Bazel at all.
 - Managed, fully hermetic tools and runtimes (except as noted below).
 - Honors formatter configuration files.
-
-TODOs:
-
-- Lazy: only fetch tooling needed by languages that are present
-- Ship as a pre-commit.com hook
 
 Supported languages:
 
@@ -25,10 +22,10 @@ Supported languages:
 | ✓         | Markdown                  | [Prettier]                                                     |
 | ✓         | Bash                      | [prettier-plugin-sh](https://github.com/un-ts/prettier)        |
 | ✓         | Python                    | [Black](https://pypi.org/project/black/)                       |
+| ✓         | Java                      | [google-java-format]                                           |
 |           | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
 |           | C/C++/C#                  | clang-format                                                   |
 |           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
-| ✓         | Java                      | [google-java-format]                                           |
 |           | SQL                       |                                                                |
 |           | Objective-C               |                                                                |
 |           | Ruby                      |                                                                |
