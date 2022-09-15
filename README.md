@@ -75,6 +75,8 @@ $ echo "bazel run @aspect_rules_format//format" >> .git/hooks/pre-commit
 $ chmod u+x .git/hooks/pre-commit
 ```
 
+> Note that this option will run the formatter over all files, not just changed files.
+
 💎 Install under [pre-commit.com](https://pre-commit.com/) hook, in your `.pre-commit-config.yaml`:
 
 ```yaml

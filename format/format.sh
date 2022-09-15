@@ -118,7 +118,12 @@ if [ "$#" -eq 0 ]; then
 else
   files=$(find "$@" -name '*.swift')
 fi
-bin=$(rlocation swiftformat/swiftformat_linux)
+if [[ $OSTYPE == 'darwin'* ]]; then
+  bin=$(rlocation swiftformat_mac/swiftformat)
+else
+  bin=$(rlocation swiftformat/swiftformat_linux)
+fi
+
 if [ -n "$files" ] && [ -n "$bin" ]; then
   # swiftformat itself prints Running SwiftFormat...
   echo $files | xargs $bin $swiftmode
