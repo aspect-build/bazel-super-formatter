@@ -1,1 +1,2 @@
 build --@aspect_rules_format//format:java_enabled=false
+build --@aspect_rules_format//format:swift_enabled=false

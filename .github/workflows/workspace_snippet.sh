@@ -16,7 +16,7 @@ http_archive(
     name = "aspect_rules_format",
     sha256 = "${SHA}",
     strip_prefix = "${PREFIX}",
-    url = "https://github.com/aspect-build/rules_format/archive/refs/tags/${TAG}.tar.gz",
+    url = "https://github.com/aspect-build/bazel-super-formatter/archive/refs/tags/${TAG}.tar.gz",
 )
 EOF
 

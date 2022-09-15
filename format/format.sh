@@ -65,37 +65,37 @@ esac
 
 files=$(git ls-files '*/BUILD.bazel' '*.bzl' '*.BUILD' 'WORKSPACE' '*.bazel')
 bin=$(rlocation buildifier_prebuilt/buildifier/buildifier)
-[ -n "$files" ] && [ -n "$bin" ] && {
+if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running Buildifier..."
   echo $files | xargs $bin -mode="$mode"
-}
+fi
 
 files=$(git ls-files '*.js' '*.sh' '*.ts' '*.tsx' '*.json' '*.css' '*.html' '*.md' '*.yaml' '*.yml')
 bin=$(rlocation aspect_rules_format/format/prettier.sh)
-[ -n "$files" ] && [ -n "$bin" ] && {
+if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running Prettier..."
   echo $files | xargs $bin $prettiermode
-}
+fi
 
 files=$(git ls-files '*.py' '*.pyi')
 bin=$(rlocation aspect_rules_format_pypi_black/rules_python_wheel_entry_point_black)
-[ -n "$files" ] && [ -n "$bin" ] && {
+if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running black..."
   echo $files | xargs $bin $blackmode
-}
+fi
 
 files=$(git ls-files '*.java')
 bin=$(rlocation aspect_rules_format/format/java-format)
-[ -n "$files" ] && [ -n "$bin" ] && {
+if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running java-format..."
   # Setting JAVA_RUNFILES to work around https://github.com/bazelbuild/bazel/issues/12348
   echo $files | JAVA_RUNFILES="${RUNFILES_MANIFEST_FILE%_manifest}" xargs $bin $javamode
-}
+fi
 
 # TODO: don't hardcode "linux"
 files=$(git ls-files '*.swift')
 bin=$(rlocation swiftformat/swiftformat_linux)
-[ -n "$files" ] && [ -n "$bin" ] && {
+if [ -n "$files" ] && [ -n "$bin" ]; then
   # swiftformat itself prints Running SwiftFormat...
   echo $files | xargs $bin $swiftmode
-}
+fi
