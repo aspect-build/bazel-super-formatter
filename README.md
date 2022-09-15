@@ -14,32 +14,18 @@ Supported languages:
 
 | Supported | Language                  | Tool                                                           |
 | --------- | ------------------------- | -------------------------------------------------------------- |
-| ✓         | Starlark (Bazel)          | [Buildifier](https://github.com/keith/buildifier-prebuilt)     |
-| ✓         | Swift                     | [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) (1) |
+| ✓         | Python                    | [Black](https://pypi.org/project/black/)                       |
+| ✓         | Java                      | [google-java-format]                                           |
 | ✓         | JavaScript/TypeScript/TSX | [Prettier]                                                     |
 | ✓         | CSS/HTML                  | [Prettier]                                                     |
 | ✓         | JSON/YAML                 | [Prettier]                                                     |
 | ✓         | Markdown                  | [Prettier]                                                     |
 | ✓         | Bash                      | [prettier-plugin-sh](https://github.com/un-ts/prettier)        |
-| ✓         | Python                    | [Black](https://pypi.org/project/black/)                       |
-| ✓         | Java                      | [google-java-format]                                           |
+| ✓         | Starlark (Bazel)          | [Buildifier](https://github.com/keith/buildifier-prebuilt)     |
+| ✓         | Swift                     | [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) (1) |
 |           | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
 |           | C/C++/C#                  | clang-format                                                   |
 |           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
-|           | SQL                       |                                                                |
-|           | Objective-C               |                                                                |
-|           | Ruby                      |                                                                |
-|           | PHP                       |                                                                |
-|           | Visual Basic              |                                                                |
-|           | Groovy                    |                                                                |
-|           | Scala                     |                                                                |
-|           | Kotlin                    |                                                                |
-|           | Haskell                   |                                                                |
-|           | Dart                      |                                                                |
-|           | Perl                      |                                                                |
-|           | Protobuf                  |                                                                |
-|           | Jsonnet                   |                                                                |
-|           | Terraform                 |                                                                |
 
 [prettier]: https://prettier.io
 [google-java-format]: https://github.com/google/google-java-format
