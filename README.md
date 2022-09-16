@@ -27,6 +27,8 @@ Supported languages:
 |           | C/C++/C#                  | clang-format                                                   |
 |           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
 
+More languages TODO: https://github.com/aspect-build/bazel-super-formatter/issues/6
+
 [prettier]: https://prettier.io
 [google-java-format]: https://github.com/google/google-java-format
 
@@ -43,7 +45,7 @@ copy the WORKSPACE snippet into your `WORKSPACE` file.
 
 ## Usage
 
-💎 One-time re-format all files:
+### One-time re-format all files
 
 `bazel run @aspect_rules_format//format`
 
@@ -51,20 +53,13 @@ copy the WORKSPACE snippet into your `WORKSPACE` file.
 > You may want to instruct developers with in-flight changes to reformat their branches as well, to avoid merge conflicts.
 > Also consider adding your re-format commit to the [`.git-blame-ignore-revs` file](https://docs.github.com/en/repositories/working-with-files/using-files/viewing-a-file#ignore-commits-in-the-blame-view) to avoid polluting the blame layer.
 
-💎 Re-format a specific file:
+### Re-format specific file(s)
 
-`bazel run @aspect_rules_format//format some/file.ext`
+`bazel run @aspect_rules_format//format some/file.md other/file.json`
 
-💎 Install as a git pre-commit hook:
+### Install as a pre-commit hook
 
-```bash
-$ echo "bazel run @aspect_rules_format//format" >> .git/hooks/pre-commit
-$ chmod u+x .git/hooks/pre-commit
-```
-
-> Note that this option will run the formatter over all files, not just changed files.
-
-💎 Install under [pre-commit.com](https://pre-commit.com/) hook, in your `.pre-commit-config.yaml`:
+If you use [pre-commit.com](https://pre-commit.com/), add this in your `.pre-commit-config.yaml`:
 
 ```yaml
 - repo: local
@@ -76,7 +71,19 @@ $ chmod u+x .git/hooks/pre-commit
       files: .*
 ```
 
-💎 Check that files are already formatted, exit non-zero if formatting is needed:
+Otherwise you can just do this simple thing:
+
+```bash
+$ echo "bazel run @aspect_rules_format//format" >> .git/hooks/pre-commit
+$ chmod u+x .git/hooks/pre-commit
+```
+
+> Note that this option will run the formatter over all files, not just changed files.
+
+
+### Check that files are already formatted
+
+This will exit non-zero if formatting is needed. You would typically run the check mode on CI.
 
 `bazel run @aspect_rules_format//format -- --mode check`
 
