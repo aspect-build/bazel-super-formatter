@@ -51,19 +51,6 @@ copy the WORKSPACE snippet into your `WORKSPACE` file.
 > You may want to instruct developers with in-flight changes to reformat their branches as well, to avoid merge conflicts.
 > Also consider adding your re-format commit to the [`.git-blame-ignore-revs` file](https://docs.github.com/en/repositories/working-with-files/using-files/viewing-a-file#ignore-commits-in-the-blame-view) to avoid polluting the blame layer.
 
-💎 Syntax sugar
-
-In `/BUILD.bazel` add:
-
-```starlark
-alias(
-    name = "format",
-    actual = "@aspect_rules_format//format",
-)
-```
-
-Now you can just run `bazel run format`.
-
 💎 Re-format a specific file:
 
 `bazel run @aspect_rules_format//format some/file.ext`
