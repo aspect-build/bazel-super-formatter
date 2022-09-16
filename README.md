@@ -108,6 +108,8 @@ Look in our `format/repositories.bzl` file and copy the `http_*` rule you want t
 
 We honor the `.gitignore` file. Otherwise use the affordance provided by the formatter tool, for example `.prettierignore` for files to be ignored by Prettier.
 
+Sometimes engineers want to ignore a file with a certain extension because the content isn't actually valid syntax for the corresponding language. For example, you might write a template for YAML and name it `my-template.yaml` even though it needs to have some interpolated values inserted before it's syntactically valid. We recommend instead fixing the file extension. In this example, `my.yaml.tmpl` or `my-template.yaml_` might be better.
+
 ## Design
 
 See https://hackmd.io/0UgIb6gyTvSVX9N2vTPGug
