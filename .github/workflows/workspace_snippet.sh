@@ -5,7 +5,7 @@ set -o errexit -o nounset -o pipefail
 # Set by GH actions, see
 # https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables
 TAG=${GITHUB_REF_NAME}
-PREFIX="rules_format-${TAG:1}"
+PREFIX="bazel-super-formatter-${TAG:1}"
 SHA=$(git archive --format=tar --prefix=${PREFIX}/ ${TAG} | gzip | shasum -a 256 | awk '{print $1}')
 
 cat << EOF
