@@ -80,7 +80,6 @@ $ chmod u+x .git/hooks/pre-commit
 
 > Note that this option will run the formatter over all files, not just changed files.
 
-
 ### Check that files are already formatted
 
 This will exit non-zero if formatting is needed. You would typically run the check mode on CI.
