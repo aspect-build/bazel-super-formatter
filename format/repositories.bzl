@@ -47,6 +47,7 @@ def rules_format_dependencies():
         sha256 = "978eaffdc3716bbc0859aecee0d83875cf3ab8d8725779448f0035309d9ad9f3",
         url = "https://github.com/nicklockwood/SwiftFormat/releases/download/0.49.17/swiftformat.zip",
         patch_cmds = [
+            # On MacOS, `xattr -c` clears the "Unknown developer" warning when executing a fetched binary
             "if command -v xattr > /dev/null; then xattr -c swiftformat; fi",
             "chmod u+x swiftformat",
         ],
