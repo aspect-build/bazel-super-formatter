@@ -18,7 +18,7 @@ Supported languages:
 | ✓         | Java                      | [google-java-format]                                           |
 | ✓         | JavaScript/TypeScript/TSX | [Prettier]                                                     |
 | ✓         | CSS/HTML                  | [Prettier]                                                     |
-| ✓         | JSON/YAML                 | [Prettier]                                                     |
+| ✓         | JSON                      | [Prettier]                                                     |
 | ✓         | Markdown                  | [Prettier]                                                     |
 | ✓         | Bash                      | [prettier-plugin-sh](https://github.com/un-ts/prettier)        |
 | ✓         | Starlark (Bazel)          | [Buildifier](https://github.com/keith/buildifier-prebuilt)     |
@@ -26,6 +26,7 @@ Supported languages:
 |           | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
 |           | C/C++/C#                  | clang-format                                                   |
 |           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
+|           | YAML                      | [yamlfmt](https://github.com/google/yamlfmt)                   |
 
 More languages TODO: https://github.com/aspect-build/bazel-super-formatter/issues/6
 
