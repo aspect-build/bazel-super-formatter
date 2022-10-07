@@ -75,7 +75,7 @@ fi
 bin=$(rlocation buildifier_prebuilt/buildifier/buildifier)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running Buildifier..."
-  echo $files | xargs $bin -mode="$mode"
+  echo "$files" | tr \\n \\0 | xargs -0 $bin -mode="$mode"
 fi
 
 if [ "$#" -eq 0 ]; then
@@ -86,7 +86,7 @@ fi
 bin=$(rlocation aspect_rules_format/format/prettier.sh)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running Prettier..."
-  echo $files | xargs $bin $prettiermode
+  echo "$files" | tr \\n \\0 | xargs -0 $bin $prettiermode
 fi
 
 if [ "$#" -eq 0 ]; then
@@ -97,7 +97,7 @@ fi
 bin=$(rlocation aspect_rules_format_pypi_black/rules_python_wheel_entry_point_black)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running black..."
-  echo $files | xargs $bin $blackmode
+  echo "$files" | tr \\n \\0 | xargs -0 $bin $blackmode
 fi
 
 if [ "$#" -eq 0 ]; then
@@ -109,7 +109,7 @@ bin=$(rlocation aspect_rules_format/format/java-format)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running java-format..."
   # Setting JAVA_RUNFILES to work around https://github.com/bazelbuild/bazel/issues/12348
-  echo $files | JAVA_RUNFILES="${RUNFILES_MANIFEST_FILE%_manifest}" xargs $bin $javamode
+  echo "$files" | tr \\n \\0 | JAVA_RUNFILES="${RUNFILES_MANIFEST_FILE%_manifest}" xargs -0 $bin $javamode
 fi
 
 # TODO: don't hardcode "linux"
@@ -126,5 +126,5 @@ fi
 
 if [ -n "$files" ] && [ -n "$bin" ]; then
   # swiftformat itself prints Running SwiftFormat...
-  echo $files | xargs $bin $swiftmode
+  echo "$files" | tr \\n \\0 | xargs -0 $bin $swiftmode
 fi
