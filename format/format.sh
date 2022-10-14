@@ -119,7 +119,7 @@ if [ "$#" -eq 0 ]; then
 else
   files=$(find "$@" -name '*.go')
 fi
-bin=$(rlocation aspect_rules_format/external/go_sdk/bin/gofmt)
+bin=$(rlocation go_sdk/bin/gofmt)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running gofmt..."
   # gofmt doesn't produce non-zero exit code so we must check for non-empty output
