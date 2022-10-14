@@ -23,7 +23,7 @@ Supported languages:
 | ✓         | Bash                      | [prettier-plugin-sh](https://github.com/un-ts/prettier)        |
 | ✓         | Starlark (Bazel)          | [Buildifier](https://github.com/keith/buildifier-prebuilt)     |
 | ✓         | Swift                     | [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) (1) |
-|           | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
+| ✓         | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
 |           | C/C++/C#                  | clang-format                                                   |
 |           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
 |           | YAML                      | [yamlfmt](https://github.com/google/yamlfmt)                   |

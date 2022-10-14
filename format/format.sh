@@ -57,12 +57,14 @@ case "$mode" in
    prettiermode="--check"
    blackmode="--check"
    javamode="--set-exit-if-changed --dry-run"
+   gofmtmode="-l"
    ;;
  fix)
    swiftmode=""
    prettiermode="--write"
    blackmode=""
    javamode="--replace"
+   gofmtmode="-w"
    ;;
  *) echo >&2 "unknown mode $mode";;
 esac
@@ -110,6 +112,28 @@ if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running java-format..."
   # Setting JAVA_RUNFILES to work around https://github.com/bazelbuild/bazel/issues/12348
   echo "$files" | tr \\n \\0 | JAVA_RUNFILES="${RUNFILES_MANIFEST_FILE%_manifest}" xargs -0 $bin $javamode
+fi
+
+if [ "$#" -eq 0 ]; then
+  files=$(git ls-files '*.go')
+else
+  files=$(find "$@" -name '*.go')
+fi
+bin=$(rlocation aspect_rules_format/external/go_sdk/bin/gofmt)
+if [ -n "$files" ] && [ -n "$bin" ]; then
+  echo "Running gofmt..."
+  # gofmt doesn't produce non-zero exit code so we must check for non-empty output
+  # https://github.com/golang/go/issues/24230
+  if [ "$mode" == "check" ]; then
+    NEED_FMT=$(echo "$files" | tr \\n \\0 | xargs -0 $bin $gofmtmode)
+    if [ -n "$NEED_FMT" ]; then
+       echo "Go files not formatted:"
+       echo "$NEED_FMT"
+       exit 1
+    fi
+  else 
+    echo "$files" | tr \\n \\0 | xargs -0 $bin $gofmtmode
+  fi
 fi
 
 # TODO: don't hardcode "linux"
