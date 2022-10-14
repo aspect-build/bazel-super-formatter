@@ -6,9 +6,10 @@ local_repository(
 
 #---SNIP--- Below here is re-used in the workspace snippet published on releases
 
-######################
-# rules_format setup #
-######################
+#########################################
+# rules_format setup                    #
+# Paste to the bottom of your WORKSPACE #
+#########################################
 # Fetches the rules_format dependencies.
 # If you want to have a different version of some dependency,
 # you should fetch it *before* calling this.
@@ -40,6 +41,8 @@ parse_dependencies()
 
 # Installs toolchains for running programs under Node, Python, etc.
 # Be sure to register your own toolchains before this.
+# Most users should do this LAST in their WORKSPACE to avoid getting our versions of
+# things like the Go toolchain rather than the one you intended.
 load("@aspect_rules_format//format:toolchains.bzl", "format_register_toolchains")
 
 format_register_toolchains()

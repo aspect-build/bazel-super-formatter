@@ -77,6 +77,9 @@ sh_binary(
     data = [
         ":buildifier",
         ":prettier",
+        # We can't make this optional, because it's an eager fetch as soon as this
+        # label appears anywhere in this file.
+        "@go_sdk//:bin/gofmt",
     ] + select(
         {
             ":format_java": [":java-format"],
