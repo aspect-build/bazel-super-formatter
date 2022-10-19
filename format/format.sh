@@ -81,9 +81,9 @@ if [ -n "$files" ] && [ -n "$bin" ]; then
 fi
 
 if [ "$#" -eq 0 ]; then
-  files=$(git ls-files '*.js' '*.sh' '*.ts' '*.tsx' '*.json' '*.css' '*.html' '*.md')
+  files=$(git ls-files '*.js' '*.cjs' '*.mjs' '*.sh' '*.ts' '*.tsx' '*.mts' '*.cts' '*.json' '*.css' '*.html' '*.md')
 else
-  files=$(find "$@" -name '*.js' -or -name '*.sh' -or -name '*.ts' -or -name '*.tsx' -or -name '*.json' -or -name '*.css' -or -name '*.html' -or -name '*.md')
+  files=$(find "$@" -name '*.js' -or -name '*.cjs' -or -name '*.mjs' -or -name '*.sh' -or -name '*.ts' -or -name '*.tsx' -or -name '*.mts' -or -name '*.cts' -or -name '*.json' -or -name '*.css' -or -name '*.html' -or -name '*.md')
 fi
 bin=$(rlocation aspect_rules_format/format/prettier.sh)
 if [ -n "$files" ] && [ -n "$bin" ]; then
