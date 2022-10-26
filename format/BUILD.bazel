@@ -53,6 +53,14 @@ alias(
     }),
 )
 
+alias(
+    name = "buf",
+    actual = select({
+        "@bazel_tools//src/conditions:linux": "@buf//:bin/buf",
+        "@bazel_tools//src/conditions:darwin": "@buf_mac//:bin/buf",
+    }),
+)
+
 [
     bool_flag(
         name = s + "_enabled",
@@ -93,6 +101,11 @@ sh_binary(
     ) + select(
         {
             ":format_python": [":black"],
+            "//conditions:default": [],
+        },
+    ) + select(
+        {
+            ":format_proto": [":buf"],
             "//conditions:default": [],
         },
     ),

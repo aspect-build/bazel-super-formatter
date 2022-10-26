@@ -3,6 +3,7 @@
 # - should this program be written in a different language?
 # - if bash, we could reuse https://github.com/github/super-linter/blob/main/lib/functions/worker.sh
 # - can we detect what version control system is used? (start with git)
+set -x
 
 if [[ -z "$BUILD_WORKSPACE_DIRECTORY" ]]; then
   echo >&2 "$0: FATAL: This program must be executed under 'bazel run'"
@@ -58,6 +59,7 @@ case "$mode" in
    blackmode="--check"
    javamode="--set-exit-if-changed --dry-run"
    gofmtmode="-l"
+   bufmode="format -d"
    ;;
  fix)
    swiftmode=""
@@ -65,6 +67,7 @@ case "$mode" in
    blackmode=""
    javamode="--replace"
    gofmtmode="-w"
+   bufmode="format -w"
    ;;
  *) echo >&2 "unknown mode $mode";;
 esac
@@ -131,7 +134,7 @@ if [ -n "$files" ] && [ -n "$bin" ]; then
        echo "$NEED_FMT"
        exit 1
     fi
-  else 
+  else
     echo "$files" | tr \\n \\0 | xargs -0 $bin $gofmtmode
   fi
 fi
@@ -151,4 +154,19 @@ fi
 if [ -n "$files" ] && [ -n "$bin" ]; then
   # swiftformat itself prints Running SwiftFormat...
   echo "$files" | tr \\n \\0 | xargs -0 $bin $swiftmode
+fi
+
+if [ "$#" -eq 0 ]; then
+  files=$(git ls-files '*.proto')
+else
+  files=$(find "$@" -name '*.proto')
+fi
+if [[ $OSTYPE == 'darwin'* ]]; then
+  bin=$(rlocation buf_mac/bin/buf)
+else
+  bin=$(rlocation buf/bin/buf)
+fi
+
+if [ -n "$files" ] && [ -n "$bin" ]; then
+  echo "$files" | tr \\n \\0 | xargs -0 $bin $bufmode
 fi
