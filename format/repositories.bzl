@@ -104,3 +104,19 @@ def rules_format_dependencies():
             "https://github.com/bazelbuild/rules_go/releases/download/v0.35.0/rules_go-v0.35.0.zip",
         ],
     )
+
+    http_archive(
+        name = "buf",
+        sha256 = "6c1e7258b79273c60085df8825a52a5ee306530e7327942c91ec84545cd2d40a",
+        url = "https://github.com/bufbuild/buf/releases/download/v1.9.0/buf-Linux-x86_64.tar.gz",
+        strip_prefix = "buf",
+        build_file = "//format:buf.BUILD.bazel",
+    )
+
+    http_archive(
+        name = "buf_mac",
+        sha256 = "27ea882bdaf5a4e46410fb3f5ef3507f6ce65cc8e6f4c943c37e89683b2866fb",
+        url = "https://github.com/bufbuild/buf/releases/download/v1.9.0/buf-Darwin-x86_64.tar.gz",
+        strip_prefix = "buf",
+        build_file = "//format:buf.BUILD.bazel",
+    )
