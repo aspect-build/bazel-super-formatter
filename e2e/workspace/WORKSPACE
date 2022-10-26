@@ -27,14 +27,6 @@ nodejs_register_toolchains(
     node_version = DEFAULT_NODE_VERSION,
 )
 
-# If you format python code, you'll need that toolchain as well
-load("@rules_python//python:repositories.bzl", "python_register_toolchains")
-
-python_register_toolchains(
-    name = "python3",
-    python_version = "3.10",
-)
-
 load("@aspect_rules_format//format:dependencies.bzl", "parse_dependencies")
 
 parse_dependencies()
@@ -46,3 +38,20 @@ parse_dependencies()
 load("@aspect_rules_format//format:toolchains.bzl", "format_register_toolchains")
 
 format_register_toolchains()
+
+# If Python formatting is enabled, you'll need to uncomment the following as well.
+#
+# load("@rules_python//python:repositories.bzl", "python_register_toolchains")
+#
+# python_register_toolchains(
+#     name = "python3",
+#     python_version = "3.10",
+# )
+#
+# load("@rules_python//python/pip_install:repositories.bzl", "pip_install_dependencies")
+#
+# pip_install_dependencies()
+#
+# load("@aspect_rules_format//:requirements.bzl", install_black = "install_deps")
+#
+# install_black()
