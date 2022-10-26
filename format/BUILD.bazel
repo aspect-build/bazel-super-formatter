@@ -1,7 +1,6 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 load("@aspect_rules_format_npm//:prettier/package_json.bzl", prettier = "bin")
-load("@aspect_rules_format_pypi//:requirements.bzl", "entry_point")
 load(":langs.bzl", "LANGS")
 
 bzl_library(
@@ -35,7 +34,8 @@ java_binary(
 
 alias(
     name = "black",
-    actual = entry_point("black"),
+    # Don't use the requirements.bzl#entry_point helper as that makes an eager load
+    actual = "@aspect_rules_format_pypi_black//:rules_python_wheel_entry_point_black",
 )
 
 alias(

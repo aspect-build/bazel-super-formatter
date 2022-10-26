@@ -34,3 +34,16 @@ parse_dependencies()
 load("//format:toolchains.bzl", "format_register_toolchains")
 
 format_register_toolchains()
+
+load("@python3//:defs.bzl", "interpreter")
+load("@rules_python//python:pip.bzl", "pip_parse")
+
+pip_parse(
+    name = "aspect_rules_format_pypi",
+    python_interpreter_target = interpreter,
+    requirements_lock = "//:requirements_lock.txt",
+)
+
+load("//:requirements.bzl", install_black = "install_deps")
+
+install_black()
