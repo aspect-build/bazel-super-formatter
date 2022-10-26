@@ -24,6 +24,7 @@ Supported languages:
 | ✓         | Starlark (Bazel)          | [Buildifier](https://github.com/keith/buildifier-prebuilt)     |
 | ✓         | Swift                     | [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) (1) |
 | ✓         | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
+| ✓         | Protobuf                  | [buf](https://docs.buf.build/format/usage)                     |
 |           | C/C++/C#                  | clang-format                                                   |
 |           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
 |           | YAML                      | [yamlfmt](https://github.com/google/yamlfmt)                   |
@@ -99,6 +100,7 @@ Add some of these lines to `.bazelrc`:
 build --@aspect_rules_format//format:java_enabled=false
 build --@aspect_rules_format//format:python_enabled=false
 build --@aspect_rules_format//format:swift_enabled=false
+build --@aspect_rules_format//format:proto_enabled=false
 ```
 
 ### Changing the version of a formatter tool
