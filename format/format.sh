@@ -168,5 +168,7 @@ fi
 
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running buf..."
-  echo "$files" | tr \\n \\0 | xargs -0 $bin $bufmode
+  for file in $files; do
+    $bin $bufmode $file
+  done
 fi
