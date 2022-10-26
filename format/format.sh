@@ -3,7 +3,6 @@
 # - should this program be written in a different language?
 # - if bash, we could reuse https://github.com/github/super-linter/blob/main/lib/functions/worker.sh
 # - can we detect what version control system is used? (start with git)
-set -x
 
 if [[ -z "$BUILD_WORKSPACE_DIRECTORY" ]]; then
   echo >&2 "$0: FATAL: This program must be executed under 'bazel run'"
@@ -59,7 +58,7 @@ case "$mode" in
    blackmode="--check"
    javamode="--set-exit-if-changed --dry-run"
    gofmtmode="-l"
-   bufmode="format -d"
+   bufmode="format -d --exit-code"
    ;;
  fix)
    swiftmode=""
@@ -168,5 +167,6 @@ else
 fi
 
 if [ -n "$files" ] && [ -n "$bin" ]; then
+  echo "Running buf..."
   echo "$files" | tr \\n \\0 | xargs -0 $bin $bufmode
 fi
