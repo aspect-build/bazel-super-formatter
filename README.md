@@ -21,6 +21,7 @@ Supported languages:
 | ✓         | JSON                      | [Prettier]                                                     |
 | ✓         | Markdown                  | [Prettier]                                                     |
 | ✓         | Bash                      | [prettier-plugin-sh](https://github.com/un-ts/prettier)        |
+| ✓         | SQL                       | [prettier-plugin-sql](https://github.com/un-ts/prettier)       |
 | ✓         | Starlark (Bazel)          | [Buildifier](https://github.com/keith/buildifier-prebuilt)     |
 | ✓         | Swift                     | [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) (1) |
 | ✓         | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
