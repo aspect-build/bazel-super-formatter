@@ -1,13 +1,15 @@
 {
   "dependencies": {
     "prettier": "*",
-    "prettier-plugin-sh": "*"
+    "prettier-plugin-sh": "*",
+    "prettier-plugin-sql": "*"
   },
   "pnpm": {
     "packageExtensions": {
       "prettier": {
         "peerDependencies": {
-          "prettier-plugin-sh": "*"
+          "prettier-plugin-sh": "*",
+          "prettier-plugin-sql": "*"
         }
       }
     }
