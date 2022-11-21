@@ -74,14 +74,13 @@ If you use [pre-commit.com](https://pre-commit.com/), add this in your `.pre-com
       files: .*
 ```
 
-Otherwise you can just do this simple thing:
+Otherwise you can just wire directly into the git hook, however
+this option will always run the formatter over all files, not just changed files.
 
 ```bash
 $ echo "bazel run @aspect_rules_format//format" >> .git/hooks/pre-commit
 $ chmod u+x .git/hooks/pre-commit
 ```
-
-> Note that this option will run the formatter over all files, not just changed files.
 
 ### Check that files are already formatted
 
@@ -113,6 +112,20 @@ Look in our `format/repositories.bzl` file and copy the `http_*` rule you want t
 We honor the `.gitignore` file. Otherwise use the affordance provided by the formatter tool, for example `.prettierignore` for files to be ignored by Prettier.
 
 Sometimes engineers want to ignore a file with a certain extension because the content isn't actually valid syntax for the corresponding language. For example, you might write a template for YAML and name it `my-template.yaml` even though it needs to have some interpolated values inserted before it's syntactically valid. We recommend instead fixing the file extension. In this example, `my.yaml.tmpl` or `my-template.yaml_` might be better.
+
+### Using from an editor
+
+Some engineers are used to setting up a formatter tool in their editor/IDE. Typically there is an editor extension, for example Prettier documents a number of them on <https://prettier.io/docs/en/editors.html>.
+
+The authors of bazel-super-formatter believe that it's a waste of time for developers to setup their workflow this way.
+It's redundant. Since not all engineers will configure their editor, you need to have a pre-commit CI check anyway.
+At best, the users are instructed how to carefully reproduce the versions of the tools and their configuration files, so that the format operation
+they perform matches what will happen automatically as they send their change off for review.
+
+Not everyone will agree, and it may not be beneficial to convince developers to change their behavior.
+Since this tool uses the same configuration files as the tool expects, you can always setup the editor extensions for all the underlying formatters yourself.
+Or you could probably configure the editor to always run one of the commands above in the Usage section, any time a file is changed.
+The instructions to do this are out-of-scope for this repo, particularly since they have to be formulated and updated for so many editors.
 
 ## Design
 
