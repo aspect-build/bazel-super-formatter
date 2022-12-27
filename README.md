@@ -131,4 +131,19 @@ The instructions to do this are out-of-scope for this repo, particularly since t
 
 See https://hackmd.io/0UgIb6gyTvSVX9N2vTPGug
 
-This project just covers the "formatting" use case.
+### What about linting?
+
+This project just covers the "formatting" use case. Linting is a totally different developer experience as explained in the design doc above:
+
+| Formatter                    | Linter    |
+|------------------------------|-----------|
+| Only one per language, since they could conflict with each other. | Many per language is fine; results compose. |
+| Invariant: program's behavior is never changed. | Suggested fixes may change behavior. |
+| Developer has no choices. Always blindly accept result. | Fix may be manual, or select from multiple auto-fixes. |
+| Changes must be applied. | Violations can be suppressed. |
+| Operates on a single file at a time. | Can require the dependency graph. |
+| Can always format just changed files / regions | New violations might be introduced in unchanged files. |
+| Fast enough to put in a pre-commit workflow. | Some are slow. |
+
+We do intend to have an Aspect-recommended solution for linting, but the project isn't funded yet.
+Please let us know if your organization is interested in sponsoring that work.
