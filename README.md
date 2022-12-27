@@ -127,6 +127,28 @@ Since this tool uses the same configuration files as the tool expects, you can a
 Or you could probably configure the editor to always run one of the commands above in the Usage section, any time a file is changed.
 The instructions to do this are out-of-scope for this repo, particularly since they have to be formulated and updated for so many editors.
 
+### Using a formatter from a BUILD rule
+
+Generally, you should just allow code generators to make messy files.
+You can exclude them from formatting by changing the file extension, adding a suppression comment at the top (following the formatter's docs) or adding to the formatter's ignore file (e.g. `.prettierignore`).
+
+However there are some valid cases where you really want to run a formatter as a build step. You can just reach into the external repository where we've installed them. For example, to run Prettier:
+
+```starlark
+load("@aspect_rules_format_npm//:prettier/package_json.bzl", prettier = "bin")
+
+prettier.prettier_binary(name = "prettier")
+
+js_run_binary(
+    name = "fmt",
+    srcs = ["raw_file.md"],
+    args = ["raw_file.md"],
+    chdir = package_name(),
+    stdout = "formatted_file.md",
+    tool = "prettier",
+)
+```
+
 ## Design
 
 See https://hackmd.io/0UgIb6gyTvSVX9N2vTPGug
