@@ -107,6 +107,25 @@ build --@aspect_rules_format//format:proto_enabled=false
 
 Look in our `format/repositories.bzl` file and copy the `http_*` rule you want to modify into your WORKSPACE, above the `rules_format_dependencies()` call.
 
+### Replacing a tool, to add plugins
+
+You can specify your own local binary, for example you might use `black` for Python with a custom `requirements.txt` file that adds plugins such as `typing_extensions`.
+
+You can do this in `WORKSPACE` before installing aspect_rules_format:
+
+```starlark
+pip_parse(
+    name = "aspect_rules_format_pypi",
+    requirements_lock = "//tools/black:requirements.txt",
+)
+
+load("@aspect_rules_format_pypi//:requirements.bzl", _aspect_rules_format_pypi_install_deps = "install_deps")
+
+_aspect_rules_format_pypi_install_deps()
+```
+
+See https://github.com/aspect-build/bazel-super-formatter/issues/13
+
 ### Ignoring files
 
 We honor the `.gitignore` file. Otherwise use the affordance provided by the formatter tool, for example `.prettierignore` for files to be ignored by Prettier.
