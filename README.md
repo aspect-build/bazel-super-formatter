@@ -97,10 +97,11 @@ If you don't use a language in your whole repo, you can turn off fetching the to
 Add some of these lines to `.bazelrc`:
 
 ```
-build --@aspect_rules_format//format:java_enabled=false
-build --@aspect_rules_format//format:python_enabled=false
-build --@aspect_rules_format//format:swift_enabled=false
-build --@aspect_rules_format//format:proto_enabled=false
+# Avoid fetching unneeded formatting toolchains
+run --@aspect_rules_format//format:java_enabled=false
+run --@aspect_rules_format//format:python_enabled=false
+run --@aspect_rules_format//format:swift_enabled=false
+run --@aspect_rules_format//format:proto_enabled=false
 ```
 
 ### Changing the version of a formatter tool
