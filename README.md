@@ -74,7 +74,10 @@ If you use [pre-commit.com](https://pre-commit.com/), add this in your `.pre-com
       files: .*
 ```
 
-Otherwise you can just wire directly into the git hook, however
+> Note that pre-commit is silent while Bazel is fetching the tooling, which can make it appear hung on the first run.
+> There is no way to avoid this; see https://github.com/pre-commit/pre-commit/issues/1003
+
+If you don't use pre-commit, you can just wire directly into the git hook, however
 this option will always run the formatter over all files, not just changed files.
 
 ```bash
