@@ -59,6 +59,7 @@ case "$mode" in
    javamode="--set-exit-if-changed --dry-run"
    gofmtmode="-l"
    bufmode="format -d --exit-code"
+   tfmode="-check -diff"
    ;;
  fix)
    swiftmode=""
@@ -67,6 +68,7 @@ case "$mode" in
    javamode="--replace"
    gofmtmode="-w"
    bufmode="format -w"
+   tfmode=""
    ;;
  *) echo >&2 "unknown mode $mode";;
 esac
@@ -105,6 +107,25 @@ if [ -n "$files" ] && [ -n "$bin" ]; then
 fi
 
 if [ "$#" -eq 0 ]; then
+  files=$(git ls-files '*.tf')
+else
+  files=$(find "$@" -name '*.tf')
+fi
+if [[ $OSTYPE == 'darwin'* ]]; then
+  if [[ $(uname -p) == 'arm' ]]; then
+    bin=$(rlocation terraform_macos_aarch64/terraform)
+  else
+    bin=$(rlocation terraform_macos_x86_64/terraform)
+  fi
+else
+  bin=$(rlocation terraform_linux_x86_64/terraform)
+fi
+if [ -n "$files" ] && [ -n "$bin" ]; then
+  echo "Running terraform..."
+  echo "$files" | tr \\n \\0 | xargs -0 $bin fmt $tfmode
+fi
+
+if [ "$#" -eq 0 ]; then
   files=$(git ls-files '*.java')
 else
   files=$(find "$@" -name '*.java')
@@ -138,7 +159,6 @@ if [ -n "$files" ] && [ -n "$bin" ]; then
   fi
 fi
 
-# TODO: don't hardcode "linux"
 if [ "$#" -eq 0 ]; then
   files=$(git ls-files '*.swift')
 else

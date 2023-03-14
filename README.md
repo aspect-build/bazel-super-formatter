@@ -105,6 +105,7 @@ run --@aspect_rules_format//format:java_enabled=false
 run --@aspect_rules_format//format:python_enabled=false
 run --@aspect_rules_format//format:swift_enabled=false
 run --@aspect_rules_format//format:proto_enabled=false
+run --@aspect_rules_format//format:terraform_enabled=false
 ```
 
 ### Changing the version of a formatter tool
