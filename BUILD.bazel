@@ -62,7 +62,7 @@ diff_test(
 ###############################################################
 # Check that our documentation includes all the language flags.
 # Each flag looks like this:
-bazelrc_line = "run --@aspect_rules_format//format:{}_enabled=true"
+bazelrc_line = "run --@aspect_rules_format//format:{}_enabled"
 
 # A little python program to format the LANGS constant into markdown content
 write_file(
