@@ -1,3 +1,4 @@
+load("@aspect_bazel_lib//lib:run_binary.bzl", "run_binary")
 load("@aspect_rules_format_npm//:defs.bzl", "npm_link_all_packages")
 load("@bazel_skylib//rules:diff_test.bzl", "diff_test")
 load("@bazel_skylib//rules:write_file.bzl", "write_file")
@@ -56,4 +57,57 @@ diff_test(
     failure_message = "Please run:  bazel run //:vendor_requirements",
     file1 = "requirements.bzl",
     file2 = ":make_platform_agnostic",
+)
+
+###############################################################
+# Check that our documentation includes all the language flags.
+# Each flag looks like this:
+bazelrc_line = "run --@aspect_rules_format//format:{}_enabled=true"
+
+# A little python program to format the LANGS constant into markdown content
+write_file(
+    name = "converter",
+    out = "convert_langs.py",
+    content = [
+        "#!/usr/bin/env python3",
+        "import sys",
+        "with open('format/langs.bzl') as bzl:",
+        "  starlark = bzl.read()",
+        # starlark is a python subset so we can just execute it for side-effects
+        "with open(sys.argv[1], 'w') as out:",
+        "  exec(starlark)",
+        "  [out.write('%s\\n'.format(lang)) for lang in LANGS]" % bazelrc_line,
+    ],
+)
+
+py_binary(
+    name = "convert_langs",
+    srcs = ["convert_langs.py"],
+)
+
+run_binary(
+    name = "extract_langs",
+    srcs = ["//format:langs.bzl"],
+    outs = ["expected"],
+    args = ["$(execpath expected)"],
+    tool = "convert_langs",
+)
+
+# Cheap awk one-liner to read the actual documentation block out of the markdown
+genrule(
+    name = "actual",
+    srcs = ["README.md"],
+    outs = ["README.lang_flags"],
+    # Print lines between PAT1 and PAT2 - not including PAT1 and PAT2
+    # https://stackoverflow.com/questions/38972736/how-to-print-lines-between-two-patterns-inclusive-or-exclusive-in-sed-awk-or
+    cmd = "awk '/{PAT1}/{{flag=1; next}} /{PAT2}/{{flag=0}} flag' $< >$@".format(
+        PAT1 = "Enable fetching formatter toolchains",
+        PAT2 = "```",
+    ),
+)
+
+diff_test(
+    name = "test_enable_flag_doc",
+    file1 = "expected",
+    file2 = "actual",
 )

@@ -1,3 +1,6 @@
+"Constants for language-specific configuration"
+
 # These are the ones users can enable.
 # We always do Prettier since it does so many languages.
-LANGS = ["java", "swift", "python", "proto", "terraform"]
+# keep sorted
+LANGS = ["java", "proto", "python", "swift", "terraform"]
