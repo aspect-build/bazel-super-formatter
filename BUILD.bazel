@@ -49,11 +49,5 @@ sh_binary(
     data = [":make_platform_agnostic"],
 )
 
-# Similarly ensures that the requirements.bzl file is updated
-# based on the requirements.txt lockfile.
-diff_test(
-    name = "test_vendored",
-    failure_message = "Please run:  bazel run //:vendor_requirements",
-    file1 = "requirements.bzl",
-    file2 = ":make_platform_agnostic",
-)
+# No diff_test for the vendored requirements, because they are manually edited to allow
+# users to provide the interpreter

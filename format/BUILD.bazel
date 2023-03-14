@@ -1,3 +1,4 @@
+load("@python//3.10:defs.bzl", "py_binary")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 load("@aspect_rules_format_npm//:prettier/package_json.bzl", prettier = "bin")
@@ -32,10 +33,12 @@ java_binary(
     runtime_deps = ["@google-java-format//jar"],
 )
 
-alias(
-    name = "black",
-    # Don't use the requirements.bzl#entry_point helper as that makes an eager load
-    actual = "@aspect_rules_format_pypi_black//:rules_python_wheel_entry_point_black",
+py_binary(
+  name = "black",
+  deps = ["@aspect_rules_format_pypi_black//:pkg"],
+  imports = ["."],
+  srcs = ["@aspect_rules_format_pypi_black//:rules_python_wheel_entry_point_black.py"],
+  python_version = "3.10.9"
 )
 
 alias(

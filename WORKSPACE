@@ -46,4 +46,4 @@ pip_parse(
 
 load("//:requirements.bzl", install_black = "install_deps")
 
-install_black()
+install_black(interpreter)
