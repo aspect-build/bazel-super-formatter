@@ -73,7 +73,7 @@ alias(
 [
     bool_flag(
         name = s + "_enabled",
-        build_setting_default = True,
+        build_setting_default = False,
     )
     for s in LANGS
 ]

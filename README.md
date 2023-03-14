@@ -93,19 +93,20 @@ This will exit non-zero if formatting is needed. You would typically run the che
 
 ## Configuration
 
-### Disable a formatter for unused language
+### Enable a formatter for your language
 
-If you don't use a language in your whole repo, you can turn off fetching the tooling.
+When you enable a language, it causes the super-formatter to fetch additional tooling as a
+runtime dependency of the format binary.
 
 Add some of these lines to `.bazelrc`:
 
 ```
-# Avoid fetching unneeded formatting toolchains
-run --@aspect_rules_format//format:java_enabled=false
-run --@aspect_rules_format//format:python_enabled=false
-run --@aspect_rules_format//format:swift_enabled=false
-run --@aspect_rules_format//format:proto_enabled=false
-run --@aspect_rules_format//format:terraform_enabled=false
+# Enable fetching formatter toolchains
+run --@aspect_rules_format//format:java_enabled=true
+run --@aspect_rules_format//format:python_enabled=true
+run --@aspect_rules_format//format:swift_enabled=true
+run --@aspect_rules_format//format:proto_enabled=true
+run --@aspect_rules_format//format:terraform_enabled=true
 ```
 
 ### Changing the version of a formatter tool
