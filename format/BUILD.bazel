@@ -3,6 +3,8 @@ load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 load("@aspect_rules_format_npm//:prettier/package_json.bzl", prettier = "bin")
 load(":langs.bzl", "LANGS")
 
+exports_files(["langs.bzl"])
+
 bzl_library(
     name = "repositories",
     srcs = ["repositories.bzl"],
