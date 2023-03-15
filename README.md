@@ -26,6 +26,7 @@ Supported languages:
 | ✓         | Swift                     | [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) (1) |
 | ✓         | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
 | ✓         | Protobuf                  | [buf](https://docs.buf.build/format/usage)                     |
+| ✓         | Terraform                 | [terraform](https://github.com/hashicorp/terraform) fmt        |
 |           | C/C++/C#                  | clang-format                                                   |
 |           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
 |           | YAML                      | [yamlfmt](https://github.com/google/yamlfmt)                   |
