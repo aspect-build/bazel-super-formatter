@@ -76,7 +76,7 @@ esac
 if [ "$#" -eq 0 ]; then
   files=$(git ls-files 'BUILD' '*/BUILD.bazel' '*.bzl' '*.BUILD' 'WORKSPACE' '*.bazel')
 else
-  files=$(find "$@" -name 'BUILD' -or -name '*/BUILD.bazel' -or -name '*.bzl' -or -name '*.BUILD' -or -name 'WORKSPACE' -or -name '*.bazel')
+  files=$(find "$@" -name 'BUILD' -or -name '*.bzl' -or -name '*.BUILD' -or -name 'WORKSPACE' -or -name '*.bazel')
 fi
 bin=$(rlocation buildifier_prebuilt/buildifier/buildifier)
 if [ -n "$files" ] && [ -n "$bin" ]; then
