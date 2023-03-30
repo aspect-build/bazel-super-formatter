@@ -125,13 +125,13 @@ def rules_format_dependencies():
     http_archive(
         name = "terraform_macos_aarch64",
         build_file_content = "exports_files([\"terraform\"])",
-        sha256 = "ec02ccdcc368ce307d03c1e981f3a863d9c07b312635d4aca24159ada7657562",
+        sha256 = "d4a1e564714c6acf848e86dc020ff182477b49f932e3f550a5d9c8f5da7636fb",
         urls = ["https://releases.hashicorp.com/terraform/{0}/terraform_{0}_darwin_arm64.zip".format(tf_version)],
     )
     http_archive(
         name = "terraform_macos_x86_64",
         build_file_content = "exports_files([\"terraform\"])",
-        sha256 = "b063c2018ed6229a6d92defee0b2a115a0a18169ed02e93ecf3899ca3e2a87de",
+        sha256 = "e897a4217f1c3bfe37c694570dcc6371336fbda698790bb6b0547ec8daf1ffb3",
         urls = ["https://releases.hashicorp.com/terraform/{0}/terraform_{0}_darwin_amd64.zip".format(tf_version)],
     )
     http_archive(
