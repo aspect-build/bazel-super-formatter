@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "prettier": "*",
-    "prettier-plugin-sh": "*",
-    "prettier-plugin-sql": "*"
+    "prettier": "^2.8.7",
+    "prettier-plugin-sh": "^0.12.8",
+    "prettier-plugin-sql": "^0.14.0"
   },
   "pnpm": {
     "packageExtensions": {
