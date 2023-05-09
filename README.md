@@ -27,6 +27,7 @@ Supported languages:
 | ✓         | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
 | ✓         | Protobuf                  | [buf](https://docs.buf.build/format/usage)                     |
 | ✓         | Terraform                 | [terraform](https://github.com/hashicorp/terraform) fmt        |
+| ✓         | Jsonnet                   | [jsonnetfmt](https://github.com/google/go-jsonnet)             |
 |           | C/C++/C#                  | clang-format                                                   |
 |           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
 |           | YAML                      | [yamlfmt](https://github.com/google/yamlfmt)                   |
