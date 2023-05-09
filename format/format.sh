@@ -60,6 +60,7 @@ case "$mode" in
    gofmtmode="-l"
    bufmode="format -d --exit-code"
    tfmode="-check -diff"
+   jsonnetmode="--test"
    ;;
  fix)
    swiftmode=""
@@ -69,6 +70,7 @@ case "$mode" in
    gofmtmode="-w"
    bufmode="format -w"
    tfmode=""
+   jsonnetmode="--in-place"
    ;;
  *) echo >&2 "unknown mode $mode";;
 esac
@@ -123,6 +125,29 @@ fi
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running terraform..."
   echo "$files" | tr \\n \\0 | xargs -0 $bin fmt $tfmode
+fi
+
+if [ "$#" -eq 0 ]; then
+  files=$(git ls-files '*.jsonnet' '*.libsonnet')
+else
+  files=$(find "$@" -name '*.jsonnet' -or -name '*.libsonnet')
+fi
+if [[ $OSTYPE == 'darwin'* ]]; then
+  if [[ $(uname -p) == 'arm' ]]; then
+    bin=$(rlocation jsonnet_macos_aarch64/jsonnetfmt)
+  else
+    bin=$(rlocation jsonnet_macos_x86_64/jsonnetfmt)
+  fi
+else
+  if [[ $(uname -p) == 'arm' ]]; then
+      bin=$(rlocation jsonnet_linux_aarch64/jsonnetfmt)
+  else
+      bin=$(rlocation jsonnet_linux_x86_64/jsonnetfmt)
+  fi
+fi
+if [ -n "$files" ] && [ -n "$bin" ]; then
+  echo "Running jsonnetfmt..."
+  echo "$files" | tr \\n \\0 | xargs -0 $bin $jsonnetmode
 fi
 
 if [ "$#" -eq 0 ]; then
