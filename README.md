@@ -110,6 +110,7 @@ run --@aspect_rules_format//format:proto_enabled
 run --@aspect_rules_format//format:python_enabled
 run --@aspect_rules_format//format:swift_enabled
 run --@aspect_rules_format//format:terraform_enabled
+run --@aspect_rules_format//format:jsonnet_enabled
 ```
 
 ### Changing the version of a formatter tool
