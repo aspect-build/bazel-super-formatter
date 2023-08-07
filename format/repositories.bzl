@@ -65,22 +65,23 @@ def rules_format_dependencies():
 
     http_archive(
         name = "rules_nodejs",
-        sha256 = "5aef09ed3279aa01d5c928e3beb248f9ad32dde6aafe6373a8c994c3ce643064",
-        urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.5.3/rules_nodejs-core-5.5.3.tar.gz"],
+        sha256 = "a833b08fc846e27a73ac2b7062e4f48cace0e72a072c6c3fa756847dc44246dd",
+        strip_prefix = "rules_nodejs-6.0.0",
+        url = "https://github.com/bazelbuild/rules_nodejs/releases/download/v6.0.0/rules_nodejs-v6.0.0.tar.gz",
     )
 
     http_archive(
         name = "aspect_rules_js",
-        sha256 = "25bcb082d49616ac2da538bf7bdd33a9730c8884edbec787fec83db07e4f7f16",
-        strip_prefix = "rules_js-1.1.0",
-        url = "https://github.com/aspect-build/rules_js/archive/refs/tags/v1.1.0.tar.gz",
+        sha256 = "7b2a4d1d264e105eae49a27e2e78065b23e2e45724df2251eacdd317e95bfdfd",
+        strip_prefix = "rules_js-1.31.0",
+        url = "https://github.com/aspect-build/rules_js/archive/refs/tags/v1.31.0.tar.gz",
     )
 
     http_archive(
         name = "aspect_bazel_lib",
-        sha256 = "8ea64f13c6db68356355d6a97dced3d149e9cd7ba3ecb4112960586e914e466d",
-        strip_prefix = "bazel-lib-1.11.1",
-        url = "https://github.com/aspect-build/bazel-lib/archive/refs/tags/v1.11.1.tar.gz",
+        sha256 = "d488d8ecca98a4042442a4ae5f1ab0b614f896c0ebf6e3eafff363bcc51c6e62",
+        strip_prefix = "bazel-lib-1.33.0",
+        url = "https://github.com/aspect-build/bazel-lib/releases/download/v1.33.0/bazel-lib-v1.33.0.tar.gz",
     )
 
     http_archive(
