@@ -196,5 +196,4 @@ This project just covers the "formatting" use case. Linting is a totally differe
 | Can always format just changed files / regions                    | New violations might be introduced in unchanged files. |
 | Fast enough to put in a pre-commit workflow.                      | Some are slow.                                         |
 
-We do intend to have an Aspect-recommended solution for linting, but the project isn't funded yet.
-Please let us know if your organization is interested in sponsoring that work.
+See <https://github.com/aspect-build/rules_lint> for running linters.
