@@ -56,10 +56,10 @@ def rules_format_dependencies():
 
     http_archive(
         name = "buildifier_prebuilt",
-        sha256 = "b3fd85ae7e45c2f36bce52cfdbdb6c20261761ea5928d1686edc8873b0d0dad0",
-        strip_prefix = "buildifier-prebuilt-5.1.0",
+        sha256 = "72b5bb0853aac597cce6482ee6c62513318e7f2c0050bc7c319d75d03d8a3875",
+        strip_prefix = "buildifier-prebuilt-6.3.3",
         urls = [
-            "http://github.com/keith/buildifier-prebuilt/archive/5.1.0.tar.gz",
+            "http://github.com/keith/buildifier-prebuilt/archive/6.3.3.tar.gz",
         ],
     )
 
@@ -85,15 +85,15 @@ def rules_format_dependencies():
 
     http_archive(
         name = "rules_python",
-        sha256 = "c03246c11efd49266e8e41e12931090b613e12a59e6f55ba2efd29a7cb8b4258",
-        strip_prefix = "rules_python-0.11.0",
-        url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.11.0.tar.gz",
+        sha256 = "5868e73107a8e85d8f323806e60cad7283f34b32163ea6ff1020cf27abef6036",
+        strip_prefix = "rules_python-0.25.0",
+        url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.25.0.tar.gz",
     )
 
     http_jar(
         name = "google-java-format",
-        sha256 = "a356bb0236b29c57a3ab678f17a7b027aad603b0960c183a18f1fe322e4f38ea",
-        url = "https://github.com/google/google-java-format/releases/download/v1.15.0/google-java-format-1.15.0-all-deps.jar",
+        sha256 = "33068bbbdce1099982ec1171f5e202898eb35f2919cf486141e439fc6e3a4203",
+        url = "https://github.com/google/google-java-format/releases/download/v1.17.0/google-java-format-1.17.0-all-deps.jar",
     )
 
     http_archive(
