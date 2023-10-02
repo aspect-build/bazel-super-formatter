@@ -67,4 +67,3 @@ maven_install(
         "https://repo1.maven.org/maven2",
     ],
 )
-

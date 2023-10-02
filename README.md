@@ -13,25 +13,25 @@ Features:
 Supported languages:
 
 | Supported | Language                  | Tool                                                           |
-| -------- |---------------------------|----------------------------------------------------------------|
-| ✓        | Python                    | [Black](https://pypi.org/project/black/)                       |
-| ✓        | Java                      | [google-java-format]                                           |
-| ✓        | JavaScript/TypeScript/TSX | [Prettier]                                                     |
-| ✓        | CSS/HTML                  | [Prettier]                                                     |
-| ✓        | JSON                      | [Prettier]                                                     |
-| ✓        | Markdown                  | [Prettier]                                                     |
-| ✓        | Bash                      | [prettier-plugin-sh](https://github.com/un-ts/prettier)        |
-| ✓        | SQL                       | [prettier-plugin-sql](https://github.com/un-ts/prettier)       |
-| ✓        | Starlark (Bazel)          | [Buildifier](https://github.com/keith/buildifier-prebuilt)     |
-| ✓        | Swift                     | [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) (1) |
-| ✓        | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
-| ✓        | Protobuf                  | [buf](https://docs.buf.build/format/usage)                     |
-| ✓        | Terraform                 | [terraform](https://github.com/hashicorp/terraform) fmt        |
-| ✓        | Jsonnet                   | [jsonnetfmt](https://github.com/google/go-jsonnet)             |
-| ✓        | Scala                     | [scalafmt](https://scalameta.org/scalafmt)                     |
-|          | C/C++/C#                  | clang-format                                                   |
-|          | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
-|          | YAML                      | [yamlfmt](https://github.com/google/yamlfmt)                   |
+| --------- | ------------------------- | -------------------------------------------------------------- |
+| ✓         | Python                    | [Black](https://pypi.org/project/black/)                       |
+| ✓         | Java                      | [google-java-format]                                           |
+| ✓         | JavaScript/TypeScript/TSX | [Prettier]                                                     |
+| ✓         | CSS/HTML                  | [Prettier]                                                     |
+| ✓         | JSON                      | [Prettier]                                                     |
+| ✓         | Markdown                  | [Prettier]                                                     |
+| ✓         | Bash                      | [prettier-plugin-sh](https://github.com/un-ts/prettier)        |
+| ✓         | SQL                       | [prettier-plugin-sql](https://github.com/un-ts/prettier)       |
+| ✓         | Starlark (Bazel)          | [Buildifier](https://github.com/keith/buildifier-prebuilt)     |
+| ✓         | Swift                     | [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) (1) |
+| ✓         | Go                        | [gofmt](https://pkg.go.dev/cmd/gofmt)                          |
+| ✓         | Protobuf                  | [buf](https://docs.buf.build/format/usage)                     |
+| ✓         | Terraform                 | [terraform](https://github.com/hashicorp/terraform) fmt        |
+| ✓         | Jsonnet                   | [jsonnetfmt](https://github.com/google/go-jsonnet)             |
+| ✓         | Scala                     | [scalafmt](https://scalameta.org/scalafmt)                     |
+|           | C/C++/C#                  | clang-format                                                   |
+|           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
+|           | YAML                      | [yamlfmt](https://github.com/google/yamlfmt)                   |
 
 More languages TODO: https://github.com/aspect-build/bazel-super-formatter/issues/6
 
