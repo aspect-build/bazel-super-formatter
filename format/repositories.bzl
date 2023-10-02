@@ -96,6 +96,16 @@ def rules_format_dependencies():
         url = "https://github.com/google/google-java-format/releases/download/v1.17.0/google-java-format-1.17.0-all-deps.jar",
     )
 
+    RULES_JVM_EXTERNAL_TAG = "5.3"
+    RULES_JVM_EXTERNAL_SHA ="d31e369b854322ca5098ea12c69d7175ded971435e55c18dd9dd5f29cc5249ac"
+
+    http_archive(
+        name = "rules_jvm_external",
+        strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_TAG,
+        sha256 = RULES_JVM_EXTERNAL_SHA,
+        url = "https://github.com/bazelbuild/rules_jvm_external/releases/download/%s/rules_jvm_external-%s.tar.gz" % (RULES_JVM_EXTERNAL_TAG, RULES_JVM_EXTERNAL_TAG)
+    )
+
     http_archive(
         name = "io_bazel_rules_go",
         sha256 = "099a9fb96a376ccbbb7d291ed4ecbdfd42f6bc822ab77ae6f1b5cb9e914e94fa",

@@ -34,6 +34,12 @@ java_binary(
     runtime_deps = ["@google-java-format//jar"],
 )
 
+java_binary(
+    name = "scalafmt",
+    main_class = "org.scalafmt.cli.Cli",
+    runtime_deps = ["@maven//:org_scalameta_scalafmt_cli_2_13"],
+)
+
 alias(
     name = "black",
     # Don't use the requirements.bzl#entry_point helper as that makes an eager load
@@ -114,6 +120,11 @@ sh_binary(
     ) + select(
         {
             ":format_java": [":java-format"],
+            "//conditions:default": [],
+        },
+    ) + select(
+        {
+            ":format_scala": [":scalafmt"],
             "//conditions:default": [],
         },
     ) + select(
