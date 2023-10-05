@@ -37,7 +37,7 @@ java_binary(
 java_binary(
     name = "scalafmt",
     main_class = "org.scalafmt.cli.Cli",
-    runtime_deps = ["@maven//:org_scalameta_scalafmt_cli_2_13"],
+    runtime_deps = ["@aspect_rules_format_maven//:org_scalameta_scalafmt_cli_2_13"],
 )
 
 alias(
