@@ -5,10 +5,6 @@ load("//format:repositories.bzl", "rules_format_dependencies")
 # Fetch dependencies which users need as well
 rules_format_dependencies()
 
-load("//format:dependencies.bzl", "rules_format_setup")
-
-rules_format_setup()
-
 load("@buildifier_prebuilt//:defs.bzl", "buildifier_prebuilt_register_toolchains")
 
 buildifier_prebuilt_register_toolchains()
