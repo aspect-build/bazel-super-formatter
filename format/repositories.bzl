@@ -96,15 +96,201 @@ def rules_format_dependencies():
         url = "https://github.com/google/google-java-format/releases/download/v1.17.0/google-java-format-1.17.0-all-deps.jar",
     )
 
-    RULES_JVM_EXTERNAL_TAG = "5.3"
-    RULES_JVM_EXTERNAL_SHA = "d31e369b854322ca5098ea12c69d7175ded971435e55c18dd9dd5f29cc5249ac"
+    # GENERATED DEPS FOR org.scalameta:scalafmt-cli_2.13:3.7.14
 
-    http_archive(
-        name = "rules_jvm_external",
-        strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_TAG,
-        sha256 = RULES_JVM_EXTERNAL_SHA,
-        url = "https://github.com/bazelbuild/rules_jvm_external/releases/download/%s/rules_jvm_external-%s.tar.gz" % (RULES_JVM_EXTERNAL_TAG, RULES_JVM_EXTERNAL_TAG),
+    http_jar(
+        name = "scalafmt_cli_2_13",
+        url = "https://repo1.maven.org/maven2/org/scalameta/scalafmt-cli_2.13/3.7.14/scalafmt-cli_2.13-3.7.14.jar",
+        sha256 = "5cb41b84a7c23bd02f03de2aefe4859cb6ce9b20523d072d3bab852c976e0aab",
     )
+
+    http_jar(
+        name = "metaconfig_core_2_13",
+        url = "https://repo1.maven.org/maven2/com/geirsson/metaconfig-core_2.13/0.11.1/metaconfig-core_2.13-0.11.1.jar",
+        sha256 = "26a731767c34ccf165ec86984c9e349d382a85ceaddd44bb438ac4970f89e0cb",
+    )
+
+    http_jar(
+        name = "metaconfig_pprint_2_13",
+        url = "https://repo1.maven.org/maven2/com/geirsson/metaconfig-pprint_2.13/0.11.1/metaconfig-pprint_2.13-0.11.1.jar",
+        sha256 = "1df65fcac6437d2dd7bf244061b252e168bad49ee066bb4ddd17062a47ac0d6b",
+    )
+
+    http_jar(
+        name = "metaconfig_typesafe_config_2_13",
+        url = "https://repo1.maven.org/maven2/com/geirsson/metaconfig-typesafe-config_2.13/0.11.1/metaconfig-typesafe-config_2.13-0.11.1.jar",
+        sha256 = "d1c823e1eb7f794b49b36f2340994b56c5dcdd6d3e689ab536c07212c7f88d49",
+    )
+
+    http_jar(
+        name = "scopt_2_13",
+        url = "https://repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.1.0/scopt_2.13-4.1.0.jar",
+        sha256 = "2e5037bda974630b046794274e344273919abf4727acfcd86352617dce68f82b",
+    )
+
+    http_jar(
+        name = "diffutils",
+        url = "https://repo1.maven.org/maven2/com/googlecode/java-diff-utils/diffutils/1.3.0/diffutils-1.3.0.jar",
+        sha256 = "61ba4dc49adca95243beaa0569adc2a23aedb5292ae78aa01186fa782ebdc5c2",
+    )
+
+    http_jar(
+        name = "fansi_2_13",
+        url = "https://repo1.maven.org/maven2/com/lihaoyi/fansi_2.13/0.3.0/fansi_2.13-0.3.0.jar",
+        sha256 = "2f1d4cdd8971ef2cca8c37da8a04cb0ecf94bc89e59c6383185e88cde21f2e86",
+    )
+
+    http_jar(
+        name = "sourcecode_2_13",
+        url = "https://repo1.maven.org/maven2/com/lihaoyi/sourcecode_2.13/0.3.0/sourcecode_2.13-0.3.0.jar",
+        sha256 = "6e5b2d55e942b450a222bfd3ebc23e99ca03716e42da25af1b2c8cde038100f5",
+    )
+
+    http_jar(
+        name = "nailgun_server",
+        url = "https://repo1.maven.org/maven2/com/martiansoftware/nailgun-server/0.9.1/nailgun-server-0.9.1.jar",
+        sha256 = "4518faa6bf4bd26fccdc4d85e1625dc679381a08d56872d8ad12151dda9cef25",
+    )
+
+    http_jar(
+        name = "config",
+        url = "https://repo1.maven.org/maven2/com/typesafe/config/1.4.2/config-1.4.2.jar",
+        sha256 = "0076c249b4387d8369146528fd5dacb3efba098dc02ecf9ac81debdfc2e12fd5",
+    )
+
+    http_jar(
+        name = "interface",
+        url = "https://repo1.maven.org/maven2/io/get-coursier/interface/0.0.17/interface-0.0.17.jar",
+        sha256 = "b3987e8c02441e82d88ab8727acd64eabf3a35217ffedba904b125e06a722a77",
+    )
+
+    http_jar(
+        name = "java_diff_utils",
+        url = "https://repo1.maven.org/maven2/io/github/java-diff-utils/java-diff-utils/4.12/java-diff-utils-4.12.jar",
+        sha256 = "9990a2039778f6b4cc94790141c2868864eacee0620c6c459451121a901cd5b5",
+    )
+
+    http_jar(
+        name = "jna",
+        url = "https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.13.0/jna-5.13.0.jar",
+        sha256 = "66d4f819a062a51a1d5627bffc23fac55d1677f0e0a1feba144aabdd670a64bb",
+    )
+
+    http_jar(
+        name = "jline",
+        url = "https://repo1.maven.org/maven2/org/jline/jline/3.22.0/jline-3.22.0.jar",
+        sha256 = "7c3ec8d2c5815188bbaefa4c7c42bc9b8ec172382ca026a4b4f3d113c0b5c3e3",
+    )
+
+    http_jar(
+        name = "scala_compiler",
+        url = "https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.11/scala-compiler-2.13.11.jar",
+        sha256 = "c5a14770370e73a69367b131da1533890200b1e2aa70643b73f9ff31ef2e69ec",
+    )
+
+    http_jar(
+        name = "scala_library",
+        url = "https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.11/scala-library-2.13.11.jar",
+        sha256 = "71853291f61bda32786a866533361cae474344f5b2772a379179b02112444ed3",
+    )
+
+    http_jar(
+        name = "scala_reflect",
+        url = "https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.13.11/scala-reflect-2.13.11.jar",
+        sha256 = "6a46ed9b333857e8b5ea668bb254ed8e47dacd1116bf53ade9467aa4ae8f1818",
+    )
+
+    http_jar(
+        name = "scalap",
+        url = "https://repo1.maven.org/maven2/org/scala-lang/scalap/2.13.11/scalap-2.13.11.jar",
+        sha256 = "ac358699f40002fb4f32ad77531765fce23425d0e83c51854d1635118ab285ea",
+    )
+
+    http_jar(
+        name = "scala_collection_compat_2_13",
+        url = "https://repo1.maven.org/maven2/org/scala-lang/modules/scala-collection-compat_2.13/2.5.0/scala-collection-compat_2.13-2.5.0.jar",
+        sha256 = "93f8bf202ac28c4ca13562e31f6881a7770768e12b056b568139f37c025a3841",
+    )
+
+    http_jar(
+        name = "scala_parallel_collections_2_13",
+        url = "https://repo1.maven.org/maven2/org/scala-lang/modules/scala-parallel-collections_2.13/1.0.4/scala-parallel-collections_2.13-1.0.4.jar",
+        sha256 = "68f266c4fa37cb20a76e905ad940e241190ce288b7e4a9877f1dd1261cd1a9a7",
+    )
+
+    http_jar(
+        name = "common_2_13",
+        url = "https://repo1.maven.org/maven2/org/scalameta/common_2.13/4.8.10/common_2.13-4.8.10.jar",
+        sha256 = "137d07baa33d8fb5243f1e399b4d210b929ce8a5d3b9ec70c9de8e875265d0d4",
+    )
+
+    http_jar(
+        name = "parsers_2_13",
+        url = "https://repo1.maven.org/maven2/org/scalameta/parsers_2.13/4.8.10/parsers_2.13-4.8.10.jar",
+        sha256 = "27dc6e6da71938717df932236a6301bb98dd1f13f93adaee169ea5408e8f780b",
+    )
+
+    http_jar(
+        name = "scalafmt_cli_2_13",
+        url = "https://repo1.maven.org/maven2/org/scalameta/scalafmt-cli_2.13/3.7.14/scalafmt-cli_2.13-3.7.14.jar",
+        sha256 = "5cb41b84a7c23bd02f03de2aefe4859cb6ce9b20523d072d3bab852c976e0aab",
+    )
+
+    http_jar(
+        name = "scalafmt_config_2_13",
+        url = "https://repo1.maven.org/maven2/org/scalameta/scalafmt-config_2.13/3.7.14/scalafmt-config_2.13-3.7.14.jar",
+        sha256 = "e6ce13331421f12f25822702321543a4f236d74764074e47c55135792f5ba87d",
+    )
+
+    http_jar(
+        name = "scalafmt_core_2_13",
+        url = "https://repo1.maven.org/maven2/org/scalameta/scalafmt-core_2.13/3.7.14/scalafmt-core_2.13-3.7.14.jar",
+        sha256 = "9815741de95769ccd9ac6c05defcbcc939293245a6b00ea02faa0c9e8bbf3c67",
+    )
+
+    http_jar(
+        name = "scalafmt_dynamic_2_13",
+        url = "https://repo1.maven.org/maven2/org/scalameta/scalafmt-dynamic_2.13/3.7.14/scalafmt-dynamic_2.13-3.7.14.jar",
+        sha256 = "92764f8d856e45a32aeaa1ea85d9bb9bf0615372992f90f10bb74ea414b618df",
+    )
+
+    http_jar(
+        name = "scalafmt_interfaces",
+        url = "https://repo1.maven.org/maven2/org/scalameta/scalafmt-interfaces/3.7.14/scalafmt-interfaces-3.7.14.jar",
+        sha256 = "fd76f128868e3070e3fb9eb13d4377051874a64729590040fcac1da4a7021585",
+    )
+
+    http_jar(
+        name = "scalafmt_sysops_2_13",
+        url = "https://repo1.maven.org/maven2/org/scalameta/scalafmt-sysops_2.13/3.7.14/scalafmt-sysops_2.13-3.7.14.jar",
+        sha256 = "92968b494703f385f8bd4351e95b5c400c0efbef4ce3f04f8dbfd73b7dceb083",
+    )
+
+    http_jar(
+        name = "scalameta_2_13",
+        url = "https://repo1.maven.org/maven2/org/scalameta/scalameta_2.13/4.8.10/scalameta_2.13-4.8.10.jar",
+        sha256 = "482bc472be542a43badc1d19b54bedaf2bfc258a433ac6a4c53dd31baa16eb5f",
+    )
+
+    http_jar(
+        name = "svm_subs",
+        url = "https://repo1.maven.org/maven2/org/scalameta/svm-subs/101.0.0/svm-subs-101.0.0.jar",
+        sha256 = "b31eb8ef90bec4c22a8ec858f5bd007bd46ce80c3dcef9dce238c6f9dd15c1a4",
+    )
+
+    http_jar(
+        name = "trees_2_13",
+        url = "https://repo1.maven.org/maven2/org/scalameta/trees_2.13/4.8.10/trees_2.13-4.8.10.jar",
+        sha256 = "998c9104557d13de9ac1011545c7f958383574f4adde02f0a5ad2f6da3774159",
+    )
+
+    http_jar(
+        name = "paiges_core_2_13",
+        url = "https://repo1.maven.org/maven2/org/typelevel/paiges-core_2.13/0.4.2/paiges-core_2.13-0.4.2.jar",
+        sha256 = "9484ac95856510459d1bd52a77a6b93cdd641560decdf9910395ee4d17e88163",
+    )
+
+    # END GENERATED DEPS FOR org.scalameta:scalafmt-cli_2.13:3.7.14
 
     http_archive(
         name = "io_bazel_rules_go",

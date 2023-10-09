@@ -35,9 +35,41 @@ java_binary(
 )
 
 java_binary(
-    name = "scalafmt",
+    name = "scalafmt_cli_2_13",
     main_class = "org.scalafmt.cli.Cli",
-    runtime_deps = ["@aspect_rules_format_maven//:org_scalameta_scalafmt_cli_2_13"],
+    runtime_deps = [
+        "@common_2_13//jar",
+        "@config//jar",
+        "@diffutils//jar",
+        "@fansi_2_13//jar",
+        "@interface//jar",
+        "@java_diff_utils//jar",
+        "@jline//jar",
+        "@jna//jar",
+        "@metaconfig_core_2_13//jar",
+        "@metaconfig_pprint_2_13//jar",
+        "@metaconfig_typesafe_config_2_13//jar",
+        "@nailgun_server//jar",
+        "@paiges_core_2_13//jar",
+        "@parsers_2_13//jar",
+        "@scala_collection_compat_2_13//jar",
+        "@scala_compiler//jar",
+        "@scala_library//jar",
+        "@scala_parallel_collections_2_13//jar",
+        "@scala_reflect//jar",
+        "@scalafmt_cli_2_13//jar",
+        "@scalafmt_config_2_13//jar",
+        "@scalafmt_core_2_13//jar",
+        "@scalafmt_dynamic_2_13//jar",
+        "@scalafmt_interfaces//jar",
+        "@scalafmt_sysops_2_13//jar",
+        "@scalameta_2_13//jar",
+        "@scalap//jar",
+        "@scopt_2_13//jar",
+        "@sourcecode_2_13//jar",
+        "@svm_subs//jar",
+        "@trees_2_13//jar",
+    ],
 )
 
 alias(
