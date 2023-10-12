@@ -34,6 +34,12 @@ java_binary(
     runtime_deps = ["@google-java-format//jar"],
 )
 
+java_binary(
+    name = "ktfmt",
+    main_class = "com.facebook.ktfmt.cli.Main",
+    runtime_deps = ["@ktfmt//jar"],
+)
+
 alias(
     name = "black",
     # Don't use the requirements.bzl#entry_point helper as that makes an eager load
@@ -114,6 +120,11 @@ sh_binary(
     ) + select(
         {
             ":format_java": [":java-format"],
+            "//conditions:default": [],
+        },
+    ) + select(
+        {
+            ":format_kotlin": [":ktfmt"],
             "//conditions:default": [],
         },
     ) + select(

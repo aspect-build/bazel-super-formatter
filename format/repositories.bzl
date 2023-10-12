@@ -96,6 +96,11 @@ def rules_format_dependencies():
         url = "https://github.com/google/google-java-format/releases/download/v1.17.0/google-java-format-1.17.0-all-deps.jar",
     )
 
+    http_jar(
+        name = "ktfmt",
+        url = "https://repo1.maven.org/maven2/com/facebook/ktfmt/0.46/ktfmt-0.46-jar-with-dependencies.jar",
+    )
+
     http_archive(
         name = "io_bazel_rules_go",
         sha256 = "099a9fb96a376ccbbb7d291ed4ecbdfd42f6bc822ab77ae6f1b5cb9e914e94fa",
