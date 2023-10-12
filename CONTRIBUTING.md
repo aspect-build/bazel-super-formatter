@@ -42,10 +42,9 @@ This means that any usage of `@rules_format` on your system will point to this f
 1. Tag the repo and push it (or create a tag in GH UI)
 1. Watch the automation run on GitHub actions
 
-
 ## Java deps
 
-If the formatter you want to add/update has to download JVM maven libraries (i.e. doesn't provide a ready-to-use 
+If the formatter you want to add/update has to download JVM maven libraries (i.e. doesn't provide a ready-to-use
 "fat jar" providing all dependencies packed together), please refer to the `utils/jvm_dependencies.py` script.
 It generates `http_jar` repositories for you and configures the `java_binary` target.
 We don't use `jvm_rules_external` because we want to depend on as few external rules as possible.

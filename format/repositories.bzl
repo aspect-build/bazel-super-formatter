@@ -290,7 +290,6 @@ def rules_format_dependencies():
         sha256 = "9484ac95856510459d1bd52a77a6b93cdd641560decdf9910395ee4d17e88163",
     )
 
-
     # end generated deps for org.scalameta:scalafmt-cli_2.13:3.7.14
 
     http_archive(
