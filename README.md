@@ -16,6 +16,7 @@ Supported languages:
 | --------- | ------------------------- | -------------------------------------------------------------- |
 | ✓         | Python                    | [Black](https://pypi.org/project/black/)                       |
 | ✓         | Java                      | [google-java-format]                                           |
+| ✓         | Kotlin                    | [ktfmt](https://github.com/facebook/ktfmt)                     |
 | ✓         | JavaScript/TypeScript/TSX | [Prettier]                                                     |
 | ✓         | CSS/HTML                  | [Prettier]                                                     |
 | ✓         | JSON                      | [Prettier]                                                     |
@@ -107,6 +108,7 @@ Add some of these lines to `.bazelrc`:
 run --@aspect_rules_format//format:go_enabled
 run --@aspect_rules_format//format:java_enabled
 run --@aspect_rules_format//format:jsonnet_enabled
+run --@aspect_rules_format//format:kotlin_enabled
 run --@aspect_rules_format//format:proto_enabled
 run --@aspect_rules_format//format:python_enabled
 run --@aspect_rules_format//format:swift_enabled
