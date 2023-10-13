@@ -98,6 +98,7 @@ def rules_format_dependencies():
 
     http_jar(
         name = "ktfmt",
+        sha256 = "97fc7fbd194d01a9fa45d8147c0552403003d55bac4ab89d84d7bb4d5e3f48de",
         url = "https://repo1.maven.org/maven2/com/facebook/ktfmt/0.46/ktfmt-0.46-jar-with-dependencies.jar",
     )
 
