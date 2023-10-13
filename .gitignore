@@ -3,3 +3,7 @@ bazel-*
 .idea/
 .ijwb/
 node_modules
+.bsp
+.bazelbsp
+projectview.bazelproject
+__pycache__/
