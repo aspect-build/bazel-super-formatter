@@ -106,7 +106,7 @@ if [ "$#" -eq 0 ]; then
 else
   files=$(find "$@" -name '*.py' -or -name '*.pyi')
 fi
-bin=$(rlocation aspect_rules_format_pypi_black/rules_python_wheel_entry_point_black)
+bin=$(rlocation aspect_rules_format/format/black)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running black..."
   echo "$files" | tr \\n \\0 | xargs -0 $bin $blackmode
@@ -174,7 +174,8 @@ fi
 bin=$(rlocation aspect_rules_format/format/ktfmt)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running ktfmt..."
-  echo "$files" | tr \\n \\0 | xargs -0 $bin $ktmode
+  # Setting JAVA_RUNFILES to work around https://github.com/bazelbuild/bazel/issues/12348
+  echo "$files" | tr \\n \\0 | JAVA_RUNFILES="${RUNFILES_MANIFEST_FILE%_manifest}" xargs -0 $bin $ktmode
 fi
 
 if [ "$#" -eq 0 ]; then

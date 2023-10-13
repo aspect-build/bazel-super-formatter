@@ -21,10 +21,13 @@ nodejs_register_toolchains(
 )
 
 load("@rules_python//python:repositories.bzl", "python_register_toolchains")
+load("@rules_python//python:repositories.bzl", "py_repositories")
+
+py_repositories()
 
 python_register_toolchains(
     name = "python3",
-    python_version = "3.10",
+    python_version = "3.11",
 )
 
 load("//format:dependencies.bzl", "parse_dependencies")
@@ -35,15 +38,16 @@ load("//format:toolchains.bzl", "format_register_toolchains")
 
 format_register_toolchains()
 
-load("@python3//:defs.bzl", "interpreter")
 load("@rules_python//python:pip.bzl", "pip_parse")
+load("@python3//:defs.bzl", "interpreter")
 
 pip_parse(
-    name = "aspect_rules_format_pypi",
+    name = "pip",
+    incompatible_generate_aliases = True,
     python_interpreter_target = interpreter,
     requirements_lock = "//:requirements_lock.txt",
 )
 
-load("//:requirements.bzl", install_black = "install_deps")
+load("@pip//:requirements.bzl", "install_deps")
 
-install_black()
+install_deps()

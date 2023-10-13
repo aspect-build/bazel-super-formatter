@@ -26,7 +26,6 @@ go.download(
     version = "1.19.1",
 )
 use_repo(go, "go_sdk")
-# -- bazel_dep definitions -- #
 
 non_module_deps = use_extension("//:non_module_deps.bzl", "non_module_deps")
 use_repo(non_module_deps, "scala_reflect")
@@ -66,14 +65,17 @@ use_repo(non_module_deps, "swiftformat")
 use_repo(non_module_deps, "jsonnet_linux_x86_64")
 use_repo(non_module_deps, "google-java-format")
 use_repo(non_module_deps, "ktfmt")
-# End of extension `non_module_deps`
 
-extension_for_rules_python = use_extension("//:extension_for_rules_python.bzl", "extension_for_rules_python")
-use_repo(extension_for_rules_python, "aspect_rules_format_pypi_black")
-use_repo(extension_for_rules_python, "python3_x86_64-unknown-linux-gnu")
-use_repo(extension_for_rules_python, "aspect_rules_format_pypi_pathspec")
-use_repo(extension_for_rules_python, "aspect_rules_format_pypi_tomli")
-use_repo(extension_for_rules_python, "aspect_rules_format_pypi_mypy_extensions")
-use_repo(extension_for_rules_python, "aspect_rules_format_pypi_click")
-use_repo(extension_for_rules_python, "aspect_rules_format_pypi_platformdirs")
-# End of extension `extension_for_rules_python`
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(
+    is_default = True,
+    python_version = "3.11",
+)
+
+pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
+pip.parse(
+    hub_name = "pip",
+    python_version = "3.11",
+    requirements_lock = "//:requirements_lock.txt",
+)
+use_repo(pip, "pip")
