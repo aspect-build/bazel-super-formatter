@@ -1,4 +1,4 @@
 {
-    w:: "World",
-    "Hello": $.w
+  w:: 'World',
+  Hello: $.w,
 }

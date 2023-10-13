@@ -27,7 +27,7 @@ python_register_toolchains(
     python_version = "3.10",
 )
 
-load("@aspect_rules_format//format:dependencies.bzl", "parse_dependencies")
+load("//format:dependencies.bzl", "parse_dependencies")
 
 parse_dependencies()
 

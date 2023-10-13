@@ -1,3 +1,13 @@
+common --@aspect_rules_format//format:go_enabled
+common --@aspect_rules_format//format:java_enabled
+common --@aspect_rules_format//format:jsonnet_enabled
+common --@aspect_rules_format//format:kotlin_enabled
+common --@aspect_rules_format//format:proto_enabled
+common --@aspect_rules_format//format:python_enabled
+common --@aspect_rules_format//format:scala_enabled
+common --@aspect_rules_format//format:swift_enabled
+common --@aspect_rules_format//format:terraform_enabled
+
 # Bazel settings that apply to this repository.
 # Take care to document any settings that you expect users to apply.
 # Settings that apply only to CI are in .github/workflows/ci.bazelrc

@@ -1,0 +1,79 @@
+module(
+    name = "aspect_rules_format",
+    repo_name = "aspect_rules_format",
+)
+
+bazel_dep(name = "bazel_skylib", version = "1.4.2")
+bazel_dep(name = "aspect_rules_js", version = "1.32.6")
+
+npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
+npm.npm_translate_lock(
+    name = "aspect_rules_format_npm",
+    link_workspace = "aspect_rules_format",
+    pnpm_lock = "//:pnpm-lock.yaml",
+)
+use_repo(npm, "aspect_rules_format_npm")
+
+bazel_dep(name = "buildifier_prebuilt", version = "6.3.3")
+bazel_dep(name = "aspect_bazel_lib", version = "1.11.1")
+bazel_dep(name = "rules_python", version = "0.26.0")
+bazel_dep(name = "rules_java", version = "6.4.0")
+bazel_dep(name = "rules_go", version = "0.39.1", repo_name = "io_bazel_rules_go")
+
+go = use_extension("@io_bazel_rules_go//go:extensions.bzl", "go_sdk")
+go.download(
+    name = "go_sdk",
+    version = "1.19.1",
+)
+use_repo(go, "go_sdk")
+# -- bazel_dep definitions -- #
+
+non_module_deps = use_extension("//:non_module_deps.bzl", "non_module_deps")
+use_repo(non_module_deps, "scala_reflect")
+use_repo(non_module_deps, "scalafmt_cli_2_13")
+use_repo(non_module_deps, "diffutils")
+use_repo(non_module_deps, "scalafmt_config_2_13")
+use_repo(non_module_deps, "paiges_core_2_13")
+use_repo(non_module_deps, "scalameta_2_13")
+use_repo(non_module_deps, "jline")
+use_repo(non_module_deps, "sourcecode_2_13")
+use_repo(non_module_deps, "scalap")
+use_repo(non_module_deps, "scalafmt_interfaces")
+use_repo(non_module_deps, "scala_compiler")
+use_repo(non_module_deps, "scala_parallel_collections_2_13")
+use_repo(non_module_deps, "java_diff_utils")
+use_repo(non_module_deps, "fansi_2_13")
+use_repo(non_module_deps, "trees_2_13")
+use_repo(non_module_deps, "parsers_2_13")
+use_repo(non_module_deps, "jna")
+use_repo(non_module_deps, "config")
+use_repo(non_module_deps, "scalafmt_core_2_13")
+use_repo(non_module_deps, "scopt_2_13")
+use_repo(non_module_deps, "interface")
+use_repo(non_module_deps, "scalafmt_sysops_2_13")
+use_repo(non_module_deps, "metaconfig_pprint_2_13")
+use_repo(non_module_deps, "svm_subs")
+use_repo(non_module_deps, "metaconfig_typesafe_config_2_13")
+use_repo(non_module_deps, "common_2_13")
+use_repo(non_module_deps, "scala_collection_compat_2_13")
+use_repo(non_module_deps, "metaconfig_core_2_13")
+use_repo(non_module_deps, "scala_library")
+use_repo(non_module_deps, "scalafmt_dynamic_2_13")
+use_repo(non_module_deps, "nailgun_server")
+use_repo(non_module_deps, "buf")
+use_repo(non_module_deps, "terraform_linux_x86_64")
+use_repo(non_module_deps, "swiftformat")
+use_repo(non_module_deps, "jsonnet_linux_x86_64")
+use_repo(non_module_deps, "google-java-format")
+use_repo(non_module_deps, "ktfmt")
+# End of extension `non_module_deps`
+
+extension_for_rules_python = use_extension("//:extension_for_rules_python.bzl", "extension_for_rules_python")
+use_repo(extension_for_rules_python, "aspect_rules_format_pypi_black")
+use_repo(extension_for_rules_python, "python3_x86_64-unknown-linux-gnu")
+use_repo(extension_for_rules_python, "aspect_rules_format_pypi_pathspec")
+use_repo(extension_for_rules_python, "aspect_rules_format_pypi_tomli")
+use_repo(extension_for_rules_python, "aspect_rules_format_pypi_mypy_extensions")
+use_repo(extension_for_rules_python, "aspect_rules_format_pypi_click")
+use_repo(extension_for_rules_python, "aspect_rules_format_pypi_platformdirs")
+# End of extension `extension_for_rules_python`
