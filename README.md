@@ -29,6 +29,7 @@ Supported languages:
 | ✓         | Protobuf                  | [buf](https://docs.buf.build/format/usage)                     |
 | ✓         | Terraform                 | [terraform](https://github.com/hashicorp/terraform) fmt        |
 | ✓         | Jsonnet                   | [jsonnetfmt](https://github.com/google/go-jsonnet)             |
+| ✓         | Scala                     | [scalafmt](https://scalameta.org/scalafmt)                     |
 |           | C/C++/C#                  | clang-format                                                   |
 |           | Rust                      | [rustfmt](https://github.com/rust-lang/rustfmt)                |
 |           | YAML                      | [yamlfmt](https://github.com/google/yamlfmt)                   |
@@ -111,6 +112,7 @@ run --@aspect_rules_format//format:jsonnet_enabled
 run --@aspect_rules_format//format:kotlin_enabled
 run --@aspect_rules_format//format:proto_enabled
 run --@aspect_rules_format//format:python_enabled
+run --@aspect_rules_format//format:scala_enabled
 run --@aspect_rules_format//format:swift_enabled
 run --@aspect_rules_format//format:terraform_enabled
 ```

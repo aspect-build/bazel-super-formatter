@@ -62,6 +62,7 @@ case "$mode" in
    bufmode="format -d --exit-code"
    tfmode="-check -diff"
    jsonnetmode="--test"
+   scalamode="--test"
    ;;
  fix)
    swiftmode=""
@@ -73,6 +74,7 @@ case "$mode" in
    bufmode="format -w"
    tfmode=""
    jsonnetmode="--in-place"
+   scalamode=""
    ;;
  *) echo >&2 "unknown mode $mode";;
 esac
@@ -173,6 +175,18 @@ bin=$(rlocation aspect_rules_format/format/ktfmt)
 if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running ktfmt..."
   echo "$files" | tr \\n \\0 | xargs -0 $bin $ktmode
+fi
+
+if [ "$#" -eq 0 ]; then
+  files=$(git ls-files '*.scala')
+else
+  files=$(find "$@" -name '*.scala')
+fi
+bin=$(rlocation aspect_rules_format/format/scalafmt)
+if [ -n "$files" ] && [ -n "$bin" ]; then
+  echo "Running scalafmt..."
+  # Setting JAVA_RUNFILES to work around https://github.com/bazelbuild/bazel/issues/12348
+  echo "$files" | tr \\n \\0 | JAVA_RUNFILES="${RUNFILES_MANIFEST_FILE%_manifest}" xargs -0 $bin $scalamode
 fi
 
 if [ "$#" -eq 0 ]; then
