@@ -57,6 +57,7 @@ case "$mode" in
    prettiermode="--check"
    blackmode="--check"
    javamode="--set-exit-if-changed --dry-run"
+   ktmode="--set-exit-if-changed --dry-run"
    gofmtmode="-l"
    bufmode="format -d --exit-code"
    tfmode="-check -diff"
@@ -68,6 +69,7 @@ case "$mode" in
    prettiermode="--write"
    blackmode=""
    javamode="--replace"
+   ktmode=""
    gofmtmode="-w"
    bufmode="format -w"
    tfmode=""
@@ -162,6 +164,17 @@ if [ -n "$files" ] && [ -n "$bin" ]; then
   echo "Running java-format..."
   # Setting JAVA_RUNFILES to work around https://github.com/bazelbuild/bazel/issues/12348
   echo "$files" | tr \\n \\0 | JAVA_RUNFILES="${RUNFILES_MANIFEST_FILE%_manifest}" xargs -0 $bin $javamode
+fi
+
+if [ "$#" -eq 0 ]; then
+  files=$(git ls-files '*.kt')
+else
+  files=$(find "$@" -name '*.kt')
+fi
+bin=$(rlocation aspect_rules_format/format/ktfmt)
+if [ -n "$files" ] && [ -n "$bin" ]; then
+  echo "Running ktfmt..."
+  echo "$files" | tr \\n \\0 | xargs -0 $bin $ktmode
 fi
 
 if [ "$#" -eq 0 ]; then
