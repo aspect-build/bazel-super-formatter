@@ -1,3 +1,8 @@
+# 📣 DEPRECATED
+
+When https://github.com/aspect-build/rules_lint reaches 1.0, we'll archive this repository.
+It has a more scalable and maintainable approach for aggregating the formatter tools.
+
 # A tool for formatting source code
 
 Easily ensure your code is always formatted, with consistent tooling across everyone's machines.
