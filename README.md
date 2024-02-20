@@ -1,7 +1,9 @@
 # 📣 DEPRECATED
 
-When https://github.com/aspect-build/rules_lint reaches 1.0, we'll archive this repository.
+https://github.com/aspect-build/rules_lint has replaced bazel-super-formatt.r
 It has a more scalable and maintainable approach for aggregating the formatter tools.
+
+We're sorry for the churn! Chat with us in `#aspect-dev` on https://slack.bazel.build if you're stuck migrating.
 
 # A tool for formatting source code
 
